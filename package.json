@@ -12,7 +12,11 @@
     "prisma:format": "prisma format",
     "prisma:generate": "prisma generate",
     "db:seed": "prisma db seed",
-    "db:verify": "tsx scripts/verify-database-foundation.ts"
+    "db:verify": "tsx scripts/verify-database-foundation.ts",
+    "db:dev:up": "docker compose -f docker-compose.dev.yml up -d",
+    "db:dev:down": "docker compose -f docker-compose.dev.yml down",
+    "db:migrate": "prisma migrate dev --name init_database_auth_foundation",
+    "db:studio": "prisma studio"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.3.4",

@@ -178,6 +178,18 @@ test("assertSafeToMigrate allows local dev and rejects production-like URLs", ()
   );
 });
 
+test("database safety allows the local Docker development URL", () => {
+  const localDockerUrl =
+    "postgresql://folioframe_dev:folioframe_dev_password@localhost:5432/folioframe_dev";
+  const info = getRedactedDatabaseUrlInfo(localDockerUrl);
+
+  assert.equal(info.host, "localhost");
+  assert.equal(info.database, "folioframe_dev");
+  assert.equal(info.safeSummary.includes("folioframe_dev_password"), false);
+  assert.equal(isProbablyProductionDatabaseUrl(localDockerUrl), false);
+  assert.doesNotThrow(() => assertSafeToMigrate(localDockerUrl));
+});
+
 test("database verification fallback summary is safe without DATABASE_URL", () => {
   const summary = createDatabaseVerificationSummaryFallback();
 

@@ -1,0 +1,23 @@
+# FolioFrame local development database only.
+# Do not use this compose file for production infrastructure.
+services:
+  folioframe-postgres:
+    image: postgres:16-alpine
+    container_name: folioframe-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: folioframe_dev
+      POSTGRES_USER: folioframe_dev
+      POSTGRES_PASSWORD: folioframe_dev_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - folioframe_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U folioframe_dev -d folioframe_dev"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  folioframe_postgres_data:

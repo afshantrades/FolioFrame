@@ -110,6 +110,17 @@ export default async function LiveFoundationPage() {
           </article>
           <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
             <p className="text-sm font-semibold text-slate-blue-grey">
+              Static fallback
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {snapshot.source === "static-demo" ? "active" : "standby"}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+              Fallback remains available if local database or auth checks fail.
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">
               Public routes
             </p>
             <p className="mt-2 text-2xl font-semibold text-deep-navy">public</p>
