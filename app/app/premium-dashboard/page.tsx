@@ -1,5 +1,5 @@
 import { PortalDashboard } from "@/components/PortalDashboard";
 
 export default function PremiumDashboardPage() {
-  return <PortalDashboard />;
+  return <PortalDashboard variant="premium" />;
 }
