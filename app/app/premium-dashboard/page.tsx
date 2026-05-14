@@ -1,5 +1,8 @@
 import { PortalDashboard } from "@/components/PortalDashboard";
+import { getPortalWorkspaceSnapshot } from "@/lib/live/portalDataAdapter";
 
-export default function PremiumDashboardPage() {
-  return <PortalDashboard variant="premium" />;
+export default async function PremiumDashboardPage() {
+  const snapshot = await getPortalWorkspaceSnapshot();
+
+  return <PortalDashboard variant="premium" snapshot={snapshot} />;
 }

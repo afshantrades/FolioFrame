@@ -1,6 +1,8 @@
+import { LiveDataStatusBanner } from "@/components/LiveDataStatusBanner";
 import { PortalSection, PortalStatusBadge } from "@/components/PortalComponents";
 import { getAuthConfigurationStatus } from "@/lib/auth/isAuthConfigured";
 import { getDatabaseFoundationStatus } from "@/lib/live/isDatabaseConfigured";
+import { getPortalWorkspaceSnapshot } from "@/lib/live/portalDataAdapter";
 
 const foundationItems = [
   {
@@ -54,9 +56,10 @@ function yesNo(value: boolean) {
   return value ? "yes" : "no";
 }
 
-export default function LiveFoundationPage() {
+export default async function LiveFoundationPage() {
   const authStatus = getAuthConfigurationStatus();
   const databaseStatus = getDatabaseFoundationStatus();
+  const snapshot = await getPortalWorkspaceSnapshot();
 
   return (
     <div className="space-y-8">
@@ -65,6 +68,12 @@ export default function LiveFoundationPage() {
         title="Database and auth readiness"
         body="This page reports safe configuration booleans only. It does not display secrets, connect Stripe, send email, ingest webhooks or require a live database during build."
       >
+        <LiveDataStatusBanner
+          snapshot={snapshot}
+          authConfigured={authStatus.authConfigured}
+          databaseConfigured={databaseStatus.databaseConfigured}
+        />
+
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
             <p className="text-sm font-semibold text-slate-blue-grey">Auth configured</p>
@@ -84,6 +93,17 @@ export default function LiveFoundationPage() {
             </p>
             <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
               DATABASE_URL is checked without attempting a connection.
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">
+              Portal data source
+            </p>
+            <p className="mt-2 break-words text-2xl font-semibold text-deep-navy">
+              {snapshot.source}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+              Adapter chooses static fallback or database-backed records safely.
             </p>
           </article>
           <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
@@ -136,8 +156,8 @@ export default function LiveFoundationPage() {
 
       <PortalSection
         eyebrow="Next setup step"
-        title="Configure a local development database"
-        body="Next, create a local Postgres database, copy .env.example to a local uncommitted .env file, set a real development DATABASE_URL, run Prisma migrate, then run the fictional demo seed. Stripe, Resend and webhooks should remain disconnected until later approved phases."
+        title="Configure local persistence, then protect workspace routes"
+        body="Next, configure local Postgres and run the Prisma migration, configure a Clerk development app, run the fictional seed script, then wire protected workspace route selection. Stripe, Resend and webhooks should remain disconnected until later approved phases."
         tone="warm"
       />
     </div>

@@ -1,14 +1,13 @@
 import Link from "next/link";
+import { LiveDataStatusBanner } from "@/components/LiveDataStatusBanner";
 import {
-  buyerJourneySteps,
-  dashboardMetrics,
   majorWorkspaceLinks,
   moduleStatusOverview,
-  ownerActions,
   proofMetrics,
   readinessSnapshot,
   verifiedDeliveryChecks,
 } from "@/content/folioframeDemoData";
+import type { PortalWorkspaceSnapshot } from "@/lib/live/portalDataAdapter";
 import {
   OwnerActionList,
   PortalMetricCard,
@@ -20,6 +19,7 @@ import { SectionHeader } from "./SectionHeader";
 
 type PortalDashboardProps = {
   variant?: "overview" | "premium";
+  snapshot: PortalWorkspaceSnapshot;
 };
 
 function statusTone(status: string) {
@@ -34,27 +34,64 @@ function statusTone(status: string) {
   return "neutral" as const;
 }
 
-export function PortalDashboard({ variant = "overview" }: PortalDashboardProps) {
+export function PortalDashboard({ variant = "overview", snapshot }: PortalDashboardProps) {
   if (variant === "premium") {
-    return <PremiumDashboard />;
+    return <PremiumDashboard snapshot={snapshot} />;
   }
 
-  return <OverviewDashboard />;
+  return <OverviewDashboard snapshot={snapshot} />;
 }
 
-function OverviewDashboard() {
+function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) {
+  const isDatabaseBacked = snapshot.source === "database";
+
   return (
     <div className="space-y-8">
       <SectionHeader
-        eyebrow="Internal static portal"
+        eyebrow={isDatabaseBacked ? "Internal live foundation" : "Internal static portal"}
         title="FolioFrame command centre"
-        body="A static owner-review workspace for Signature Launch Premium. It organizes module status, readiness notes, owner actions and links to the main workspaces without connecting to live systems."
+        body={
+          isDatabaseBacked
+            ? "A workspace-aware foundation view for FolioFrame records. Some module sections still use static fallback content until later persistence phases."
+            : "A static owner-review workspace for Signature Launch Premium. It organizes module status, readiness notes, owner actions and links to the main workspaces without connecting to live systems."
+        }
       />
 
-      <StaticDemoNotice>
-        This overview uses demo-only records. It does not show real buyers, billing,
-        platform events, support tickets or monitoring activity.
-      </StaticDemoNotice>
+      <LiveDataStatusBanner snapshot={snapshot} />
+
+      {isDatabaseBacked && snapshot.workspace ? (
+        <PortalSection
+          eyebrow="Database workspace"
+          title={snapshot.workspace.name}
+          body={`Workspace slug: ${snapshot.workspace.slug}. Plan: ${snapshot.workspace.plan}. Status: ${snapshot.workspace.status}.`}
+        >
+          <div className="grid gap-4 sm:grid-cols-3">
+            <PortalMetricCard
+              label="Products"
+              value={String(snapshot.products.length)}
+              trend="Database"
+              note="Workspace-scoped product records loaded through the portal data adapter."
+            />
+            <PortalMetricCard
+              label="Product tiers"
+              value={String(snapshot.productTiers.length)}
+              trend="Database"
+              note="Workspace-scoped access rule records."
+            />
+            <PortalMetricCard
+              label="Audit logs"
+              value={String(snapshot.auditLogs.length)}
+              trend="Database"
+              note="Recent workspace audit records."
+            />
+          </div>
+        </PortalSection>
+      ) : (
+        <StaticDemoNotice>
+          This overview uses demo-only records. It does not show real buyers,
+          billing, platform events, support tickets or monitoring activity.
+        </StaticDemoNotice>
+      )}
 
       <PortalSection
         eyebrow="Package"
@@ -77,9 +114,13 @@ function OverviewDashboard() {
           />
           <PortalMetricCard
             label="Static boundary"
-            value="No live data"
-            trend="Demo only"
-            note="All records are sample records for layout and content review."
+            value={isDatabaseBacked ? "Hybrid view" : "No live data"}
+            trend={isDatabaseBacked ? "Database + fallback" : "Demo only"}
+            note={
+              isDatabaseBacked
+                ? "Workspace records are database-backed while module content remains staged for future persistence."
+                : "All records are sample records for layout and content review."
+            }
           />
         </div>
       </PortalSection>
@@ -118,7 +159,7 @@ function OverviewDashboard() {
           title="Approval queue"
           body="Owner decisions that should be resolved before production implementation."
         >
-          <OwnerActionList actions={ownerActions} />
+          <OwnerActionList actions={snapshot.ownerActions} />
         </PortalSection>
       </section>
 
@@ -177,22 +218,32 @@ function OverviewDashboard() {
   );
 }
 
-function PremiumDashboard() {
+function PremiumDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) {
+  const isDatabaseBacked = snapshot.source === "database";
+
   return (
     <div className="space-y-8">
       <SectionHeader
         eyebrow="Premium dashboard"
         title="Signature Launch Premium review"
-        body="A static dashboard for reviewing readiness score, mapped systems, QA checks, owner actions, recovery routes, buyer journey and ProofMetrics summary."
+        body={
+          isDatabaseBacked
+            ? "A hybrid dashboard using database-backed workspace records plus static fallback module content while the live portal is being migrated safely."
+            : "A static dashboard for reviewing readiness score, mapped systems, QA checks, owner actions, recovery routes, buyer journey and ProofMetrics summary."
+        }
       />
 
-      <StaticDemoNotice>
-        Dashboard records are demo examples only. No live checkout, email,
-        automation, platform or customer data is connected.
-      </StaticDemoNotice>
+      <LiveDataStatusBanner snapshot={snapshot} />
+
+      {!isDatabaseBacked ? (
+        <StaticDemoNotice>
+          Dashboard records are demo examples only. No live checkout, email,
+          automation, platform or customer data is connected.
+        </StaticDemoNotice>
+      ) : null}
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-        {dashboardMetrics.map((item) => (
+        {snapshot.dashboardMetrics.map((item) => (
           <PortalMetricCard key={item.label} {...item} />
         ))}
       </section>
@@ -204,7 +255,7 @@ function PremiumDashboard() {
           body="Each sample stage has an owner, status and static review label."
         >
           <div className="grid gap-3 md:grid-cols-2">
-            {buyerJourneySteps.slice(0, 6).map((stage) => (
+            {snapshot.buyerJourneySteps.slice(0, 6).map((stage) => (
               <article
                 key={stage.stage}
                 className="rounded-lg border border-mist-blue bg-soft-white p-4"
@@ -233,7 +284,7 @@ function PremiumDashboard() {
           title="Needs owner decisions"
           body="These sample tasks keep the dashboard honest about what remains owner-led."
         >
-          <OwnerActionList actions={ownerActions} />
+          <OwnerActionList actions={snapshot.ownerActions} />
         </PortalSection>
       </section>
 
