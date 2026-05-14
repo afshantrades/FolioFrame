@@ -6,6 +6,8 @@ Status: planning only. This roadmap does not implement packages, schemas, creden
 
 Goal: establish a protected live application foundation without touching checkout or email integrations.
 
+Step 9B status: foundation implemented. Prisma, Prisma Client and Clerk packages are installed; the initial schema, server-only database helper, Clerk-aware middleware, auth helpers, workspace role helpers, `.env.example` and setup docs now exist. No migration has been run and no live database/auth credentials are committed.
+
 Recommended work:
 
 - Install Prisma, Prisma client and Clerk packages.
@@ -158,4 +160,3 @@ Exit criteria:
 - Environment variables are configured outside the repository.
 - Security, privacy and legal launch checks are complete.
 - Owner approves launch readiness.
-

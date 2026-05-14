@@ -1,0 +1,190 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum UserStatus {
+  ACTIVE
+  INVITED
+  SUSPENDED
+}
+
+enum WorkspaceStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+enum WorkspacePlan {
+  STATIC_DEMO
+  SERVICE
+  PRO
+  PREMIUM
+}
+
+enum WorkspaceRole {
+  OWNER
+  ADMIN
+  OPERATOR
+  VIEWER
+}
+
+enum MemberStatus {
+  INVITED
+  ACTIVE
+  REMOVED
+}
+
+enum ClientStatus {
+  ACTIVE
+  ARCHIVED
+}
+
+enum ProductStatus {
+  DRAFT
+  ACTIVE
+  ARCHIVED
+}
+
+enum ReviewState {
+  NOT_REVIEWED
+  OWNER_ACTION
+  READY
+  BLOCKED
+}
+
+model User {
+  id             String            @id @default(cuid())
+  clerkUserId    String            @unique
+  email          String            @unique
+  name           String?
+  status         UserStatus        @default(ACTIVE)
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+  memberships    WorkspaceMember[]
+  invitedMembers WorkspaceMember[] @relation("WorkspaceMemberInvitedBy")
+  auditLogs      AuditLog[]        @relation("AuditLogActor")
+
+  @@index([status])
+}
+
+model Workspace {
+  id           String            @id @default(cuid())
+  name         String
+  slug         String            @unique
+  status       WorkspaceStatus   @default(ACTIVE)
+  plan         WorkspacePlan     @default(STATIC_DEMO)
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
+  members      WorkspaceMember[]
+  clients      Client[]
+  products     Product[]
+  auditLogs    AuditLog[]
+  productTiers ProductTier[]
+
+  @@index([status])
+  @@index([plan])
+}
+
+model WorkspaceMember {
+  id          String        @id @default(cuid())
+  workspaceId String
+  userId      String
+  role        WorkspaceRole @default(VIEWER)
+  status      MemberStatus  @default(INVITED)
+  invitedById String?
+  joinedAt    DateTime?
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+  workspace   Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  invitedBy   User?         @relation("WorkspaceMemberInvitedBy", fields: [invitedById], references: [id], onDelete: SetNull)
+
+  @@unique([workspaceId, userId])
+  @@index([workspaceId])
+  @@index([userId])
+  @@index([invitedById])
+  @@index([status])
+}
+
+model Client {
+  id                  String       @id @default(cuid())
+  workspaceId         String
+  name                String
+  status              ClientStatus @default(ACTIVE)
+  primaryContactName  String?
+  primaryContactEmail String?
+  notes               String?
+  createdAt           DateTime     @default(now())
+  updatedAt           DateTime     @updatedAt
+  workspace           Workspace    @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  products            Product[]
+
+  @@index([workspaceId])
+  @@index([status])
+}
+
+model Product {
+  id           String        @id @default(cuid())
+  workspaceId  String
+  clientId     String?
+  name         String
+  slug         String
+  status       ProductStatus @default(DRAFT)
+  checkoutUrl  String?
+  supportRoute String?
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  workspace    Workspace     @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  client       Client?       @relation(fields: [clientId], references: [id], onDelete: SetNull)
+  tiers        ProductTier[]
+
+  @@unique([workspaceId, slug])
+  @@index([workspaceId])
+  @@index([clientId])
+  @@index([status])
+}
+
+model ProductTier {
+  id              String      @id @default(cuid())
+  workspaceId     String
+  productId       String
+  name            String
+  externalPriceId String?
+  accessRule      String
+  deliveryPath    String?
+  reviewState     ReviewState @default(NOT_REVIEWED)
+  sortOrder       Int         @default(0)
+  createdAt       DateTime    @default(now())
+  updatedAt       DateTime    @updatedAt
+  workspace       Workspace   @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
+  product         Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([productId, name])
+  @@index([workspaceId])
+  @@index([productId])
+  @@index([externalPriceId])
+  @@index([reviewState])
+}
+
+model AuditLog {
+  id          String     @id @default(cuid())
+  workspaceId String?
+  actorUserId String?
+  action      String
+  entityType  String
+  entityId    String?
+  ipAddress   String?
+  userAgent   String?
+  metadata    Json?
+  createdAt   DateTime   @default(now())
+  workspace   Workspace? @relation(fields: [workspaceId], references: [id], onDelete: SetNull)
+  actorUser   User?      @relation("AuditLogActor", fields: [actorUserId], references: [id], onDelete: SetNull)
+
+  @@index([workspaceId])
+  @@index([actorUserId])
+  @@index([entityType, entityId])
+  @@index([createdAt])
+}
