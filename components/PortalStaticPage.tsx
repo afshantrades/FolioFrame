@@ -1,7 +1,7 @@
 import {
-  buyerJourneyStages,
+  buyerJourneySteps,
   handoverItems,
-  productMatrixRows,
+  productTierMatrix,
 } from "@/content/folioframeDemoData";
 import { SectionHeader } from "./SectionHeader";
 
@@ -35,7 +35,7 @@ export function PortalStaticPage({ pageKey }: PortalStaticPageProps) {
       <SectionHeader eyebrow={page.eyebrow} title={page.title} body={page.body} />
       {pageKey === "buyer-journey" ? (
         <section className="grid gap-4">
-          {buyerJourneyStages.map((stage) => (
+          {buyerJourneySteps.map((stage) => (
             <article
               key={stage.stage}
               className="rounded-lg border border-mist-blue bg-soft-white p-5"
@@ -49,23 +49,31 @@ export function PortalStaticPage({ pageKey }: PortalStaticPageProps) {
               <p className="mt-3 text-sm leading-6 text-slate-blue-grey">
                 {stage.detail}
               </p>
+              <p className="mt-3 text-sm font-semibold text-deep-navy">
+                Owner: {stage.owner}
+              </p>
             </article>
           ))}
         </section>
       ) : null}
       {pageKey === "product-matrix" ? (
         <section className="grid gap-4">
-          {productMatrixRows.map((row) => (
+          {productTierMatrix.map((row) => (
             <article
-              key={row.product}
+              key={`${row.product}-${row.tier}`}
               className="rounded-lg border border-mist-blue bg-soft-white p-5"
             >
-              <h2 className="text-lg font-semibold text-deep-navy">{row.product}</h2>
+              <h2 className="text-lg font-semibold text-deep-navy">
+                {row.product} - {row.tier}
+              </h2>
               <p className="mt-3 text-sm leading-6 text-slate-blue-grey">
                 {row.accessRule}
               </p>
               <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
                 {row.deliveryPath}
+              </p>
+              <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+                {row.supportRoute}
               </p>
               <p className="mt-3 text-sm font-semibold text-deep-navy">
                 {row.reviewState}
@@ -78,10 +86,13 @@ export function PortalStaticPage({ pageKey }: PortalStaticPageProps) {
         <section className="grid gap-3 md:grid-cols-2">
           {handoverItems.map((item) => (
             <div
-              key={item}
+              key={item.item}
               className="rounded-lg border border-mist-blue bg-soft-white p-5 text-sm font-medium text-deep-navy"
             >
-              {item}
+              {item.item}
+              <span className="mt-2 block font-normal text-slate-blue-grey">
+                Owner: {item.owner}. Status: {item.status}.
+              </span>
             </div>
           ))}
         </section>

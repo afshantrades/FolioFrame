@@ -6,9 +6,10 @@ import { OfferCard } from "@/components/OfferCard";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { SectionHeader } from "@/components/SectionHeader";
 import {
+  addOnModules,
   advancedModules,
+  agencyModules,
   coreModules,
-  standardModules,
 } from "@/content/folioframeModules";
 import { folioframeOffers } from "@/content/folioframeOffers";
 
@@ -140,7 +141,7 @@ export default function SignatureLaunchSystemPage() {
             title="Additional structure for complex launches."
           />
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {[...advancedModules, ...standardModules].map((module) => (
+            {[...advancedModules, ...addOnModules, ...agencyModules].map((module) => (
               <ModuleCard key={module.slug} module={module} />
             ))}
           </div>

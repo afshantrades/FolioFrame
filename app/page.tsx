@@ -6,9 +6,10 @@ import { OfferCard } from "@/components/OfferCard";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { SectionHeader } from "@/components/SectionHeader";
 import {
+  addOnModules,
   advancedModules,
+  agencyModules,
   coreModules,
-  standardModules,
 } from "@/content/folioframeModules";
 import { folioframeOffers } from "@/content/folioframeOffers";
 
@@ -26,7 +27,11 @@ const previewOfferNames = [
 ];
 
 export default function HomePage() {
-  const advancedAndStandard = [...advancedModules, ...standardModules];
+  const advancedAndStandard = [
+    ...advancedModules,
+    ...addOnModules,
+    ...agencyModules,
+  ];
   const previewOffers = folioframeOffers.filter((offer) =>
     previewOfferNames.includes(offer.name),
   );

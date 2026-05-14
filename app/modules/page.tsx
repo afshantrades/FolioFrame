@@ -2,9 +2,10 @@ import { MarketingPage } from "@/components/MarketingPage";
 import { ModuleCard } from "@/components/ModuleCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import {
+  addOnModules,
   advancedModules,
+  agencyModules,
   coreModules,
-  standardModules,
 } from "@/content/folioframeModules";
 
 export default function ModulesPage() {
@@ -31,9 +32,9 @@ export default function ModulesPage() {
       </section>
       <section className="bg-mist-blue px-5 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <SectionHeader eyebrow="Advanced" title="Advanced modules and standard" />
+          <SectionHeader eyebrow="Advanced" title="Advanced modules and add-ons" />
           <div className="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {[...advancedModules, ...standardModules].map((module) => (
+            {[...advancedModules, ...addOnModules, ...agencyModules].map((module) => (
               <ModuleCard key={module.slug} module={module} />
             ))}
           </div>

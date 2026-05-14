@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
-import { getModuleBySlug } from "@/content/folioframeModules";
+import Link from "next/link";
+import { getModuleBySlug, getRelatedModules } from "@/content/folioframeHelpers";
 import { MarketingPage } from "./MarketingPage";
 import { SectionHeader } from "./SectionHeader";
 
@@ -33,18 +34,22 @@ export function ModuleDetailPage({ slug }: ModuleDetailPageProps) {
     notFound();
   }
 
+  const relatedModules = getRelatedModules(moduleInfo.slug);
+  const categoryLabel =
+    moduleInfo.category === "add-on" ? "Add-on" : moduleInfo.category;
+
   return (
     <MarketingPage>
       <section className="bg-warm-ivory px-5 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <p className="text-sm font-semibold text-slate-blue-grey">
-            {moduleInfo.category} module
+            {categoryLabel} module
           </p>
           <h1 className="mt-4 max-w-4xl text-4xl font-semibold text-deep-navy sm:text-6xl">
-            {moduleInfo.websiteHeadline}
+            {moduleInfo.publicHeadline}
           </h1>
           <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-blue-grey">
-            {moduleInfo.websiteBody}
+            {moduleInfo.publicBody}
           </p>
         </div>
       </section>
@@ -55,14 +60,23 @@ export function ModuleDetailPage({ slug }: ModuleDetailPageProps) {
               {moduleInfo.name}
             </h2>
             <p className="mt-4 text-sm leading-6 text-slate-blue-grey">
+              {moduleInfo.longDescription}
+            </p>
+            <p className="mt-4 text-sm leading-6 text-slate-blue-grey">
               {moduleInfo.problemSolved}
+            </p>
+            <p className="mt-4 text-sm font-semibold text-deep-navy">
+              {moduleInfo.pricingNotes}
             </p>
           </div>
           <div className="grid gap-4 sm:grid-cols-2">
-            <DetailList title="What is included" items={moduleInfo.included} />
+            <DetailList title="Ideal for" items={moduleInfo.idealFor} />
+            <DetailList title="What is included" items={moduleInfo.whatIsIncluded} />
             <DetailList title="Deliverables" items={moduleInfo.deliverables} />
             <DetailList title="Portal widgets" items={moduleInfo.portalWidgets} />
             <DetailList title="QA checks" items={moduleInfo.qaChecks} />
+            <DetailList title="Owner actions" items={moduleInfo.ownerActions} />
+            <DetailList title="Safe claims" items={moduleInfo.safeClaims} />
           </div>
         </div>
       </section>
@@ -83,6 +97,24 @@ export function ModuleDetailPage({ slug }: ModuleDetailPageProps) {
               </div>
             ))}
           </div>
+          {relatedModules.length > 0 ? (
+            <div className="mt-8 grid gap-4 md:grid-cols-3">
+              {relatedModules.map((relatedModule) => (
+                <Link
+                  key={relatedModule.slug}
+                  href={relatedModule.publicPath}
+                  className="rounded-lg border border-pastel-blue bg-soft-white p-5"
+                >
+                  <h3 className="text-base font-semibold text-deep-navy">
+                    {relatedModule.name}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+                    {relatedModule.shortDescription}
+                  </p>
+                </Link>
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
     </MarketingPage>

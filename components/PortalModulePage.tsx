@@ -1,5 +1,8 @@
 import { notFound } from "next/navigation";
-import { getModuleBySlug } from "@/content/folioframeModules";
+import {
+  getModuleBySlug,
+  getPortalDemoDataForModule,
+} from "@/content/folioframeHelpers";
 import { SectionHeader } from "./SectionHeader";
 
 type PortalModulePageProps = {
@@ -32,12 +35,14 @@ export function PortalModulePage({ slug }: PortalModulePageProps) {
     notFound();
   }
 
+  const demoRecords = getPortalDemoDataForModule(moduleInfo.slug);
+
   return (
     <div className="space-y-8">
       <SectionHeader
         eyebrow="Static module workspace"
-        title={`${moduleInfo.name} workspace`}
-        body={`${moduleInfo.shortDescription} This internal view uses sample content only and is intended for owner review.`}
+        title={moduleInfo.portalHeadline}
+        body={`${moduleInfo.portalBody} This internal view uses sample content only and is intended for owner review.`}
       />
       <section className="rounded-lg border border-champagne-line bg-warm-ivory p-6">
         <h2 className="text-xl font-semibold text-deep-navy">Problem solved</h2>
@@ -49,7 +54,19 @@ export function PortalModulePage({ slug }: PortalModulePageProps) {
         <Panel title="Portal widgets" items={moduleInfo.portalWidgets} />
         <Panel title="QA checks" items={moduleInfo.qaChecks} />
         <Panel title="Deliverables" items={moduleInfo.deliverables} />
+        <Panel title="Owner actions" items={moduleInfo.ownerActions} />
+        <Panel title="Safe claims" items={moduleInfo.safeClaims} />
         <Panel title="Boundaries" items={moduleInfo.boundaries} />
+      </section>
+      <section className="rounded-lg border border-mist-blue bg-soft-white p-6">
+        <h2 className="text-xl font-semibold text-deep-navy">Demo data preview</h2>
+        <p className="mt-3 text-sm leading-6 text-slate-blue-grey">
+          Static sample records are available for this module. No real customer,
+          platform, payment, or email data is included.
+        </p>
+        <p className="mt-4 text-sm font-semibold text-deep-navy">
+          {demoRecords.length} sample records
+        </p>
       </section>
     </div>
   );
