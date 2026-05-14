@@ -1,6 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { PrismaPg } from "@prisma/adapter-pg";
 
 const databasePlaceholderMarkers = [
   "placeholder",
@@ -39,6 +38,14 @@ async function main() {
     return;
   }
 
+  const prisma = new PrismaClient({
+    adapter: new PrismaPg({
+      connectionString: process.env.DATABASE_URL ?? "",
+    }),
+    log: ["warn", "error"],
+  });
+
+  try {
   const owner = await prisma.user.upsert({
     where: { email: "demo-owner@example.com" },
     update: {
@@ -282,13 +289,13 @@ async function main() {
   ]);
 
   console.log("FolioFrame demo workspace seed completed.");
+  } finally {
+    await prisma.$disconnect();
+  }
 }
 
 main()
   .catch((error) => {
     console.error(error);
     process.exitCode = 1;
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
   });

@@ -2,6 +2,12 @@ import assert from "node:assert/strict";
 import test from "node:test";
 
 import { isAuthConfigured } from "../lib/auth/isAuthConfigured.ts";
+import {
+  assertSafeToMigrate,
+  getRedactedDatabaseUrlInfo,
+  isProbablyProductionDatabaseUrl,
+} from "../lib/live/databaseSafety.ts";
+import { createDatabaseVerificationSummaryFallback } from "../lib/live/databaseVerificationSummary.ts";
 import { isDatabaseConfigured } from "../lib/live/isDatabaseConfigured.ts";
 import { getPortalWorkspaceSnapshot } from "../lib/live/portalDataAdapter.ts";
 
@@ -117,4 +123,68 @@ test("portal data adapter returns static fallback without auth/database config",
       assert.ok(snapshot.warnings.some((warning) => warning.includes("fallback")));
     },
   );
+});
+
+test("getRedactedDatabaseUrlInfo never exposes credentials", () => {
+  const info = getRedactedDatabaseUrlInfo(
+    "postgresql://folioframe:super-secret@localhost:5432/folioframe_dev",
+  );
+
+  assert.equal(info.present, true);
+  assert.equal(info.provider, "postgresql");
+  assert.equal(info.host, "localhost");
+  assert.equal(info.database, "folioframe_dev");
+  assert.equal(info.safeSummary.includes("super-secret"), false);
+  assert.equal(info.safeSummary.includes("folioframe:"), false);
+});
+
+test("isProbablyProductionDatabaseUrl blocks remote unmarked and production URLs", () => {
+  assert.equal(
+    isProbablyProductionDatabaseUrl(
+      "postgresql://user:pass@db.example.com:5432/folioframe",
+    ),
+    true,
+  );
+  assert.equal(
+    isProbablyProductionDatabaseUrl(
+      "postgresql://user:pass@db.example.com:5432/folioframe_prod",
+    ),
+    true,
+  );
+  assert.equal(
+    isProbablyProductionDatabaseUrl(
+      "postgresql://user:pass@staging-db.internal:5432/folioframe_staging",
+    ),
+    false,
+  );
+  assert.equal(
+    isProbablyProductionDatabaseUrl(
+      "postgresql://user:pass@localhost:5432/folioframe_dev",
+    ),
+    false,
+  );
+});
+
+test("assertSafeToMigrate allows local dev and rejects production-like URLs", () => {
+  assert.doesNotThrow(() =>
+    assertSafeToMigrate(
+      "postgresql://user:pass@localhost:5432/folioframe_dev",
+    ),
+  );
+  assert.throws(() =>
+    assertSafeToMigrate(
+      "postgresql://user:pass@db.example.com:5432/folioframe_prod",
+    ),
+  );
+});
+
+test("database verification fallback summary is safe without DATABASE_URL", () => {
+  const summary = createDatabaseVerificationSummaryFallback();
+
+  assert.equal(summary.databaseConfigured, false);
+  assert.equal(summary.canConnect, false);
+  assert.equal(summary.migrationLikelyApplied, false);
+  assert.equal(summary.seededWorkspaceFound, false);
+  assert.equal(summary.workspaceCount, 0);
+  assert.ok(summary.warnings.some((warning) => warning.includes("skipped")));
 });

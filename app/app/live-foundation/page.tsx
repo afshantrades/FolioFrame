@@ -3,6 +3,7 @@ import { PortalSection, PortalStatusBadge } from "@/components/PortalComponents"
 import { getAuthConfigurationStatus } from "@/lib/auth/isAuthConfigured";
 import { getDatabaseFoundationStatus } from "@/lib/live/isDatabaseConfigured";
 import { getPortalWorkspaceSnapshot } from "@/lib/live/portalDataAdapter";
+import { getDatabaseVerificationSummary } from "@/lib/services/databaseVerificationService";
 
 const foundationItems = [
   {
@@ -60,6 +61,7 @@ export default async function LiveFoundationPage() {
   const authStatus = getAuthConfigurationStatus();
   const databaseStatus = getDatabaseFoundationStatus();
   const snapshot = await getPortalWorkspaceSnapshot();
+  const verification = await getDatabaseVerificationSummary();
 
   return (
     <div className="space-y-8">
@@ -123,6 +125,87 @@ export default async function LiveFoundationPage() {
             </p>
           </article>
         </div>
+      </PortalSection>
+
+      <PortalSection
+        eyebrow="Database verification"
+        title="Local persistence readiness"
+        body={
+          verification.databaseConfigured
+            ? "FolioFrame checked the configured database without exposing connection secrets."
+            : "No DATABASE_URL is configured, so local database verification was skipped and static fallback remains active."
+        }
+      >
+        <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">
+              Database configured
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {yesNo(verification.databaseConfigured)}
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">Can connect</p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {yesNo(verification.canConnect)}
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">
+              Seeded workspace found
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {yesNo(verification.seededWorkspaceFound)}
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">
+              Migration likely applied
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {yesNo(verification.migrationLikelyApplied)}
+            </p>
+          </article>
+        </div>
+
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">Workspaces</p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {verification.workspaceCount}
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">Products</p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {verification.productCount}
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">Product tiers</p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {verification.productTierCount}
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">Audit logs</p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {verification.auditLogCount}
+            </p>
+          </article>
+        </div>
+
+        {verification.warnings.length > 0 ? (
+          <div className="mt-4 rounded-lg border border-champagne-line bg-warm-ivory p-4">
+            <p className="text-sm font-semibold text-deep-navy">Warnings</p>
+            <ul className="mt-2 list-disc space-y-1 pl-5 text-sm leading-6 text-slate-blue-grey">
+              {verification.warnings.map((warning) => (
+                <li key={warning}>{warning}</li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
       </PortalSection>
 
       <PortalSection
