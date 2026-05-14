@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   accessGuardRecommendations,
   accessLifecycleMatrix,
@@ -11,6 +12,7 @@ import {
   proofMetrics,
   systemMapItems,
 } from "@/content/folioframeDemoData";
+import { folioframeImplementationDocs } from "@/content/folioframeImplementationDocs";
 import {
   OwnerActionList,
   PortalSection,
@@ -73,6 +75,21 @@ const productMatrixColumns = [
     ),
   },
 ] satisfies readonly PortalTableColumn<(typeof productTierMatrix)[number]>[];
+
+const handoverImplementationDocSlugs = [
+  "production-integration-blueprint",
+  "client-onboarding-sop",
+  "deliverypack-handover-template",
+  "deliveryproof-test-plan",
+  "accessguard-monthly-retainer-sop",
+  "launchroom-runbook",
+  "migrationframe-runbook",
+  "agencyframe-playbook",
+];
+
+const handoverImplementationDocs = folioframeImplementationDocs.filter((doc) =>
+  handoverImplementationDocSlugs.includes(doc.slug),
+);
 
 export function PortalStaticPage({ pageKey }: PortalStaticPageProps) {
   const page = staticPages[pageKey];
@@ -360,6 +377,36 @@ function HandoverWorkspace() {
           </div>
         </PortalSection>
       </section>
+
+      <PortalSection
+        eyebrow="Related implementation docs"
+        title="Service delivery resources"
+        body="Static planning, SOP, runbook and handover documents that support the owner handover packet. These links do not activate live integrations."
+        tone="warm"
+      >
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+          {handoverImplementationDocs.map((doc) => (
+            <Link
+              key={doc.slug}
+              href={`/app/implementation-docs/${doc.slug}`}
+              className="rounded-lg border border-mist-blue bg-soft-white p-4 hover:border-pastel-blue hover:bg-mist-blue"
+            >
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                <h3 className="text-sm font-semibold leading-6 text-deep-navy">
+                  {doc.title}
+                </h3>
+                <PortalStatusBadge>{doc.category}</PortalStatusBadge>
+              </div>
+              <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+                {doc.bestFor}
+              </p>
+              <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-deep-navy">
+                {doc.staticStatus}
+              </p>
+            </Link>
+          ))}
+        </div>
+      </PortalSection>
     </div>
   );
 }

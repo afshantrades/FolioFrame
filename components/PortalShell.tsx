@@ -14,6 +14,7 @@ const portalLinks = [
       { label: "Buyer journey", href: "/app/buyer-journey" },
       { label: "Product matrix", href: "/app/product-matrix" },
       { label: "Handover", href: "/app/handover" },
+      { label: "Implementation Docs", href: "/app/implementation-docs" },
     ],
   },
   {
@@ -63,7 +64,9 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
               </p>
               <div className="mt-2 grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-1">
                 {group.links.map((item) => {
-                  const isActive = pathname === item.href;
+                  const isActive =
+                    pathname === item.href ||
+                    (item.href !== "/app" && pathname.startsWith(`${item.href}/`));
 
                   return (
                     <Link
