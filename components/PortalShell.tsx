@@ -15,6 +15,7 @@ const portalLinks = [
       { label: "Product matrix", href: "/app/product-matrix" },
       { label: "Handover", href: "/app/handover" },
       { label: "Implementation Docs", href: "/app/implementation-docs" },
+      { label: "Live Foundation", href: "/app/live-foundation" },
     ],
   },
   {
