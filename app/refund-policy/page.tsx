@@ -4,8 +4,8 @@ export default function RefundPolicyPage() {
   return (
     <PublicInfoPage
       eyebrow="Refund policy"
-      title="Refund policy placeholder"
-      body="This static page outlines where refund policy copy would live. It does not process orders or refunds."
+      title="Refund policy starter page"
+      body="This static page outlines where refund policy copy would live. It does not process orders or refunds. Formal legal review is required before launch."
       sections={[
         {
           title: "No checkout in this scaffold",
@@ -17,7 +17,7 @@ export default function RefundPolicyPage() {
         },
         {
           title: "Review before production",
-          body: "Refund wording should be reviewed before any live offer is sold.",
+          body: "Refund wording should be reviewed before any live offer is sold, especially where access changes, handover timing or migration support are part of the scope.",
         },
       ]}
     />

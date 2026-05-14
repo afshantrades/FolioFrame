@@ -117,6 +117,24 @@ export function ModuleDetailPage({ slug }: ModuleDetailPageProps) {
           ) : null}
         </div>
       </section>
+      <section className="px-5 py-16 sm:px-6 lg:px-8">
+        <div className="mx-auto rounded-lg border border-champagne-line bg-deep-navy p-8 text-soft-white">
+          <p className="text-sm font-semibold text-pastel-blue">Next step</p>
+          <h2 className="mt-3 max-w-3xl text-3xl font-semibold">
+            Review where {moduleInfo.name} fits in your checkout-to-customer system.
+          </h2>
+          <p className="mt-4 max-w-3xl text-sm leading-6 text-mist-blue">
+            Use the static application preview to describe your product structure,
+            current tools, access rules, launch needs, and handover questions.
+          </p>
+          <Link
+            href="/apply"
+            className="mt-6 inline-flex max-w-full rounded-md bg-soft-white px-5 py-3 text-sm font-semibold text-deep-navy hover:bg-mist-blue"
+          >
+            Open application preview
+          </Link>
+        </div>
+      </section>
     </MarketingPage>
   );
 }

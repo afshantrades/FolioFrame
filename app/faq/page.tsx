@@ -10,7 +10,7 @@ export default function FAQPage() {
           <SectionHeader
             eyebrow="FAQ"
             title="FolioFrame questions"
-            body="Clear answers about scope, static demo status and operational wording."
+            body="Clear answers about outcomes, platform boundaries, migration, launch support, agency use and static/demo status."
           />
         </div>
       </section>

@@ -1,11 +1,32 @@
 import Link from "next/link";
+import { getOfferModules } from "@/content/folioframeHelpers";
 import type { FolioFrameOffer } from "@/content/folioframeOffers";
 
 type OfferCardProps = {
   offer: FolioFrameOffer;
+  compact?: boolean;
 };
 
-export function OfferCard({ offer }: OfferCardProps) {
+function OfferList({ title, items }: { title: string; items: readonly string[] }) {
+  return (
+    <div>
+      <p className="text-xs font-semibold uppercase tracking-normal text-deep-navy">
+        {title}
+      </p>
+      <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-blue-grey">
+        {items.map((item) => (
+          <li key={item}>- {item}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+export function OfferCard({ offer, compact = false }: OfferCardProps) {
+  const includedModuleNames = getOfferModules(offer.slug).map(
+    (moduleInfo) => moduleInfo.name,
+  );
+
   return (
     <article
       className={
@@ -26,14 +47,27 @@ export function OfferCard({ offer }: OfferCardProps) {
         </p>
       </div>
       <p className="mt-5 text-sm font-semibold text-deep-navy">{offer.bestFor}</p>
-      <ul className="mt-4 space-y-2 text-sm leading-6 text-slate-blue-grey">
-        {offer.deliverables.slice(0, 4).map((item) => (
-          <li key={item}>- {item}</li>
-        ))}
-      </ul>
+      {compact ? (
+        <OfferList title="Deliverables" items={offer.deliverables.slice(0, 4)} />
+      ) : (
+        <div className="mt-5 grid gap-5">
+          <OfferList title="Included modules" items={includedModuleNames} />
+          <OfferList title="Deliverables" items={offer.deliverables} />
+          <OfferList title="Not included" items={offer.notIncluded} />
+          <OfferList
+            title="Owner responsibilities"
+            items={offer.ownerResponsibilities}
+          />
+        </div>
+      )}
       <p className="mt-4 text-sm leading-6 text-slate-blue-grey">
         Timeline: {offer.timeline}
       </p>
+      {!compact ? (
+        <p className="mt-4 text-sm leading-6 text-slate-blue-grey">
+          {offer.safeScopeBoundary}
+        </p>
+      ) : null}
       <div className="mt-6">
         <Link
           href={offer.path}

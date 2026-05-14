@@ -3,7 +3,7 @@ import {
   type FolioFrameModuleCategory,
   type ModuleSlug,
 } from "./folioframeModules";
-import { folioframeOffers, type OfferSlug } from "./folioframeOffers";
+import { folioframeOffers } from "./folioframeOffers";
 import { getPortalDemoDataForModule } from "./folioframeDemoData";
 
 export function getModuleBySlug(slug: string) {
@@ -30,7 +30,7 @@ export function getRelatedModules(slug: ModuleSlug) {
     .filter((relatedModule) => relatedModule !== undefined);
 }
 
-export function getOfferModules(slug: OfferSlug) {
+export function getOfferModules(slug: string) {
   const offer = getOfferBySlug(slug);
 
   if (!offer) {
