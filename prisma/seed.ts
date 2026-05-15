@@ -1,5 +1,9 @@
+import { config as loadEnv } from "dotenv";
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
+
+loadEnv({ path: ".env.local" });
+loadEnv();
 
 const databasePlaceholderMarkers = [
   "placeholder",

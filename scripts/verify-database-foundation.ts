@@ -1,4 +1,4 @@
-import "dotenv/config";
+import { config as loadEnv } from "dotenv";
 
 import { PrismaClient } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
@@ -7,6 +7,9 @@ import {
   assertSafeToMigrate,
   getRedactedDatabaseUrlInfo,
 } from "../lib/live/databaseSafety.ts";
+
+loadEnv({ path: ".env.local" });
+loadEnv();
 
 async function main() {
   const info = getRedactedDatabaseUrlInfo();
