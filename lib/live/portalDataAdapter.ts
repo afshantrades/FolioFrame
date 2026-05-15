@@ -4,14 +4,65 @@ import {
   ownerActions,
   productTierMatrix,
 } from "../../content/folioframeDemoData.ts";
-import { isAuthConfigured } from "../auth/isAuthConfigured.ts";
+import { getAuthMode } from "../auth/authMode.ts";
 import { isDatabaseConfigured } from "./isDatabaseConfigured.ts";
 
-type PortalDataSource = "static-demo" | "database";
+type PortalDataSource =
+  | "static-demo"
+  | "auth-required"
+  | "workspace-required"
+  | "database";
+
+type AdapterWorkspaceContext =
+  | {
+      status:
+        | "auth-disabled"
+        | "unauthenticated"
+        | "database-unavailable"
+        | "user-required"
+        | "workspace-required";
+      publicMessage: string;
+      reason: string;
+      workspace: null;
+      membership: null;
+    }
+  | {
+      status: "ready";
+      publicMessage: string;
+      reason: string;
+      workspace: {
+        id: string;
+        name: string;
+        slug: string;
+        plan: string;
+        status: string;
+      };
+      membership: {
+        role: string;
+        status: string;
+      };
+    };
+
+type PortalWorkspaceSnapshotOptions = {
+  workspaceContext?: AdapterWorkspaceContext;
+};
 
 export type PortalWorkspaceSnapshot = {
   source: PortalDataSource;
   isLiveReady: boolean;
+  authMode: "disabled-dev" | "clerk";
+  authConfigured: boolean;
+  databaseConfigured: boolean;
+  workspaceContextStatus:
+    | "auth-disabled"
+    | "unauthenticated"
+    | "database-unavailable"
+    | "user-required"
+    | "workspace-required"
+    | "ready"
+    | "static-demo";
+  guidance: string;
+  signInHref?: string;
   workspace?: {
     id: string;
     name: string;
@@ -51,8 +102,8 @@ export type PortalWorkspaceSnapshot = {
     trend?: string;
     note?: string;
   }[];
-  buyerJourneySteps: typeof buyerJourneySteps;
-  ownerActions: typeof ownerActions;
+  buyerJourneySteps: readonly (typeof buyerJourneySteps)[number][];
+  ownerActions: readonly (typeof ownerActions)[number][];
   warnings: string[];
 };
 
@@ -85,9 +136,19 @@ function createStaticProductTiers() {
 export function createStaticPortalWorkspaceSnapshot(
   warnings: string[] = [],
 ): PortalWorkspaceSnapshot {
+  const authMode = getAuthMode();
+  const databaseConfigured = isDatabaseConfigured();
+
   return {
     source: "static-demo",
     isLiveReady: false,
+    authMode: authMode.mode,
+    authConfigured: authMode.configured,
+    databaseConfigured,
+    workspaceContextStatus: authMode.configured ? "database-unavailable" : "auth-disabled",
+    guidance: authMode.configured
+      ? "Database-backed workspace data is not available, so the portal is showing static demo data."
+      : "Auth is not configured; portal is showing static demo data.",
     workspace: {
       id: "static-demo-workspace",
       name: "Static Demo Workspace",
@@ -105,35 +166,111 @@ export function createStaticPortalWorkspaceSnapshot(
   };
 }
 
-export async function getPortalWorkspaceSnapshot(): Promise<PortalWorkspaceSnapshot> {
-  const databaseReady = isDatabaseConfigured();
-  const authReady = isAuthConfigured();
+function createAccessRequiredSnapshot({
+  source,
+  contextStatus,
+  guidance,
+  warnings,
+}: {
+  source: "auth-required" | "workspace-required";
+  contextStatus: "unauthenticated" | "workspace-required" | "user-required";
+  guidance: string;
+  warnings: string[];
+}): PortalWorkspaceSnapshot {
+  const authMode = getAuthMode();
 
-  if (!databaseReady || !authReady) {
+  return {
+    source,
+    isLiveReady: false,
+    authMode: authMode.mode,
+    authConfigured: authMode.configured,
+    databaseConfigured: isDatabaseConfigured(),
+    workspaceContextStatus: contextStatus,
+    guidance,
+    signInHref: source === "auth-required" ? "/sign-in" : undefined,
+    products: [],
+    productTiers: [],
+    auditLogs: [],
+    dashboardMetrics: [],
+    buyerJourneySteps: [],
+    ownerActions: [],
+    warnings,
+  };
+}
+
+async function resolveWorkspaceContext(
+  options: PortalWorkspaceSnapshotOptions,
+): Promise<AdapterWorkspaceContext> {
+  if (options.workspaceContext) {
+    return options.workspaceContext;
+  }
+
+  const { getCurrentWorkspaceContext } = await import("../auth/currentWorkspace");
+
+  return getCurrentWorkspaceContext();
+}
+
+export async function getPortalWorkspaceSnapshot(
+  options: PortalWorkspaceSnapshotOptions = {},
+): Promise<PortalWorkspaceSnapshot> {
+  const databaseReady = isDatabaseConfigured();
+  const authMode = getAuthMode();
+
+  if (!authMode.configured) {
     return createStaticPortalWorkspaceSnapshot([
-      !authReady ? "Auth is not configured; static demo fallback is active." : "",
+      "Auth is not configured; portal is showing static demo data.",
       !databaseReady ? "Database is not configured; static demo fallback is active." : "",
     ].filter(Boolean));
   }
 
   try {
+    const workspaceContext = await resolveWorkspaceContext(options);
+
+    if (workspaceContext.status === "unauthenticated") {
+      return createAccessRequiredSnapshot({
+        source: "auth-required",
+        contextStatus: "unauthenticated",
+        guidance: "Sign in with Clerk to load a FolioFrame workspace.",
+        warnings: ["Auth is configured, but no signed-in Clerk session was found."],
+      });
+    }
+
+    if (
+      workspaceContext.status === "workspace-required" ||
+      workspaceContext.status === "user-required"
+    ) {
+      return createAccessRequiredSnapshot({
+        source: "workspace-required",
+        contextStatus: workspaceContext.status,
+        guidance:
+          "A signed-in user needs an active FolioFrame WorkspaceMember record before workspace data can be shown.",
+        warnings: [workspaceContext.publicMessage],
+      });
+    }
+
+    if (!databaseReady || workspaceContext.status === "database-unavailable") {
+      return createStaticPortalWorkspaceSnapshot([
+        workspaceContext.publicMessage,
+        "Database-backed workspace data is not available; static demo fallback is active.",
+      ]);
+    }
+
+    if (workspaceContext.status !== "ready") {
+      return createStaticPortalWorkspaceSnapshot([
+        workspaceContext.publicMessage,
+        "Workspace context is not ready; static demo fallback is active.",
+      ]);
+    }
+
     const [
-      { getWorkspaceForCurrentUser },
       { listProductsForWorkspace, listProductTiersForWorkspace },
       { listAuditLogsForWorkspace },
     ] = await Promise.all([
-      import("../services/workspaceService"),
       import("../services/productService"),
       import("../services/auditLogService"),
     ]);
 
-    const workspace = await getWorkspaceForCurrentUser();
-
-    if (!workspace) {
-      return createStaticPortalWorkspaceSnapshot([
-        "Database and auth appear configured, but no workspace was available for the current user.",
-      ]);
-    }
+    const workspace = workspaceContext.workspace;
 
     const [products, productTiers, auditLogs] = await Promise.all([
       listProductsForWorkspace(workspace.id),
@@ -144,6 +281,12 @@ export async function getPortalWorkspaceSnapshot(): Promise<PortalWorkspaceSnaps
     return {
       source: "database",
       isLiveReady: true,
+      authMode: authMode.mode,
+      authConfigured: authMode.configured,
+      databaseConfigured: true,
+      workspaceContextStatus: "ready",
+      guidance:
+        "Workspace, product, tier and audit records are loaded from the authenticated workspace.",
       workspace: {
         id: workspace.id,
         name: workspace.name,
@@ -206,8 +349,10 @@ export async function getPortalWorkspaceSnapshot(): Promise<PortalWorkspaceSnaps
       buyerJourneySteps,
       ownerActions,
       warnings: [
+        products.length === 0 ? "No products were found for this workspace." : "",
+        productTiers.length === 0 ? "No product tiers were found for this workspace." : "",
         "Buyer journey and owner action records still use static demo content until later workspace modules are migrated.",
-      ],
+      ].filter(Boolean),
     };
   } catch (error) {
     const message = error instanceof Error ? error.message : "Unknown database error";

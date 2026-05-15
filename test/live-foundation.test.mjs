@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 
+import { getAuthMode } from "../lib/auth/authMode.ts";
 import { isAuthConfigured } from "../lib/auth/isAuthConfigured.ts";
 import {
   assertSafeToMigrate,
@@ -105,6 +106,29 @@ test("isAuthConfigured accepts plausible Clerk development keys", () => {
   );
 });
 
+test("getAuthMode reports disabled-dev for placeholder Clerk values", () => {
+  const status = getAuthMode({
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "pk_test_placeholder",
+    CLERK_SECRET_KEY: "sk_test_placeholder",
+  });
+
+  assert.equal(status.configured, false);
+  assert.equal(status.clerkConfigured, false);
+  assert.equal(status.mode, "disabled-dev");
+  assert.equal(status.publicMessage.includes("Auth is not configured"), true);
+});
+
+test("getAuthMode reports clerk for configured-looking values", () => {
+  const status = getAuthMode({
+    NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "pk_test_localDevelopmentKey",
+    CLERK_SECRET_KEY: "sk_test_localDevelopmentKey",
+  });
+
+  assert.equal(status.configured, true);
+  assert.equal(status.clerkConfigured, true);
+  assert.equal(status.mode, "clerk");
+});
+
 test("portal data adapter returns static fallback without auth/database config", async () => {
   await withEnv(
     {
@@ -121,6 +145,58 @@ test("portal data adapter returns static fallback without auth/database config",
       assert.ok(snapshot.productTiers.length > 0);
       assert.ok(snapshot.dashboardMetrics.length > 0);
       assert.ok(snapshot.warnings.some((warning) => warning.includes("fallback")));
+    },
+  );
+});
+
+test("portal data adapter returns auth-required when Clerk is configured without session", async () => {
+  await withEnv(
+    {
+      DATABASE_URL: "postgresql://folioframe:local-secret@localhost:5432/folioframe_dev",
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "pk_test_localDevelopmentKey",
+      CLERK_SECRET_KEY: "sk_test_localDevelopmentKey",
+    },
+    async () => {
+      const snapshot = await getPortalWorkspaceSnapshot({
+        workspaceContext: {
+          status: "unauthenticated",
+          publicMessage: "Sign in with Clerk to open a FolioFrame workspace.",
+          reason: "No signed-in Clerk session was found.",
+          workspace: null,
+          membership: null,
+        },
+      });
+
+      assert.equal(snapshot.source, "auth-required");
+      assert.equal(snapshot.signInHref, "/sign-in");
+      assert.equal(snapshot.products.length, 0);
+      assert.equal(snapshot.workspaceContextStatus, "unauthenticated");
+    },
+  );
+});
+
+test("portal data adapter returns workspace-required when membership is missing", async () => {
+  await withEnv(
+    {
+      DATABASE_URL: "postgresql://folioframe:local-secret@localhost:5432/folioframe_dev",
+      NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: "pk_test_localDevelopmentKey",
+      CLERK_SECRET_KEY: "sk_test_localDevelopmentKey",
+    },
+    async () => {
+      const snapshot = await getPortalWorkspaceSnapshot({
+        workspaceContext: {
+          status: "workspace-required",
+          publicMessage: "Create or assign a WorkspaceMember record.",
+          reason: "Signed-in user has no active workspace membership.",
+          workspace: null,
+          membership: null,
+        },
+      });
+
+      assert.equal(snapshot.source, "workspace-required");
+      assert.equal(snapshot.products.length, 0);
+      assert.equal(snapshot.workspaceContextStatus, "workspace-required");
+      assert.equal(snapshot.warnings.length > 0, true);
     },
   );
 });

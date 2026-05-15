@@ -97,6 +97,12 @@ export async function verifySeededWorkspace() {
 }
 
 export async function getDatabaseVerificationSummary(): Promise<DatabaseVerificationSummary> {
+  if (process.env.NEXT_PHASE === "phase-production-build") {
+    return createDatabaseVerificationSummaryFallback([
+      "Database verification skipped during production build; runtime verification remains available.",
+    ]);
+  }
+
   if (!isDatabaseConfigured()) {
     return createDatabaseVerificationSummaryFallback();
   }

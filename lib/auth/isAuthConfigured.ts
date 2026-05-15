@@ -1,25 +1,18 @@
-const authPlaceholderMarkers = ["placeholder", "your_", "example"];
-
-function hasUsableAuthValue(value: string | undefined) {
-  if (!value) {
-    return false;
-  }
-
-  const normalized = value.toLowerCase();
-  return !authPlaceholderMarkers.some((marker) => normalized.includes(marker));
-}
+import { getAuthMode, isClerkConfigured } from "./authMode.ts";
 
 export function isAuthConfigured() {
-  return (
-    hasUsableAuthValue(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY) &&
-    hasUsableAuthValue(process.env.CLERK_SECRET_KEY)
-  );
+  return isClerkConfigured();
 }
 
 export function getAuthConfigurationStatus() {
+  const authMode = getAuthMode();
+
   return {
-    authConfigured: isAuthConfigured(),
-    publishableKeyPresent: Boolean(process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY),
-    secretKeyPresent: Boolean(process.env.CLERK_SECRET_KEY),
+    authConfigured: authMode.configured,
+    publishableKeyPresent: authMode.publishableKeyPresent,
+    secretKeyPresent: authMode.secretKeyPresent,
+    mode: authMode.mode,
+    reason: authMode.reason,
+    publicMessage: authMode.publicMessage,
   };
 }

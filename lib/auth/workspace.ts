@@ -3,7 +3,7 @@ import "server-only";
 import type { WorkspaceRole } from "@prisma/client";
 
 import { prisma } from "@/lib/db";
-import { getCurrentUserRecord } from "./currentUser";
+import { getCurrentUserRecord } from "./currentUser.ts";
 
 export async function getWorkspaceMembership(workspaceId: string) {
   const user = await getCurrentUserRecord();

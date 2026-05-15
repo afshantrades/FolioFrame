@@ -1,4 +1,18 @@
 export { getAuthFoundationStatus, isClerkConfigured } from "./config";
+export { getAuthMode, getAuthStatusSummary } from "./authMode";
 export { getAuthConfigurationStatus, isAuthConfigured } from "./isAuthConfigured";
-export { getCurrentUserRecord, requireCurrentUser } from "./currentUser";
-export { getWorkspaceMembership, requireWorkspaceRole } from "./workspace";
+export {
+  getCurrentClerkIdentity,
+  getCurrentUserRecord,
+  getOrCreateCurrentUserRecord,
+  requireCurrentUser,
+} from "./currentUser";
+export {
+  getCurrentWorkspaceContext,
+  requireWorkspaceContext,
+  requireWorkspaceRole,
+} from "./currentWorkspace";
+export {
+  getWorkspaceMembership,
+  requireWorkspaceRole as requireWorkspaceRoleForWorkspace,
+} from "./workspace";

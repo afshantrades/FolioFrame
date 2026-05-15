@@ -1,14 +1,16 @@
 import { PortalShell } from "@/components/PortalShell";
-import { isClerkConfigured } from "@/lib/auth/config";
+import { getAuthStatusSummary } from "@/lib/auth/config";
 
 export default function InternalAppLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const authSummary = getAuthStatusSummary();
+
   return (
-    <PortalShell>
-      {!isClerkConfigured() ? (
+    <PortalShell authSummary={authSummary}>
+      {!authSummary.configured ? (
         <div className="mb-6 rounded-md border border-champagne-line bg-warm-ivory px-4 py-3 text-sm leading-6 text-deep-navy">
           Auth foundation note: Clerk environment variables are not configured,
           so this static portal remains viewable for local development. When

@@ -44,8 +44,22 @@ const portalLinks = [
   },
 ];
 
-export function PortalShell({ children }: { children: React.ReactNode }) {
+type PortalShellAuthSummary = {
+  mode: "disabled-dev" | "clerk";
+  configured: boolean;
+  publicMessage: string;
+};
+
+export function PortalShell({
+  children,
+  authSummary,
+}: {
+  children: React.ReactNode;
+  authSummary?: PortalShellAuthSummary;
+}) {
   const pathname = usePathname();
+  const authModeLabel =
+    authSummary?.mode === "clerk" ? "Auth mode: Clerk" : "Auth mode: disabled-dev";
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-soft-white text-deep-navy lg:grid lg:grid-cols-[320px_minmax(0,1fr)]">
@@ -54,7 +68,18 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
           <Link href="/" aria-label="FolioFrame home" className="inline-flex">
             <BrandLockup />
           </Link>
-          <StaticDemoNotice compact />
+          <StaticDemoNotice compact>
+            {authSummary?.configured
+              ? "Clerk auth foundation is active for internal routes. Billing, platform connections, customer automation and live monitoring remain disconnected."
+              : "Static/demo only. No real auth, billing, customer data, platform connections or live monitoring are active."}
+          </StaticDemoNotice>
+          <div className="rounded-lg border border-champagne-line bg-soft-white p-3 text-xs leading-5 text-deep-navy">
+            <p className="font-semibold">{authModeLabel}</p>
+            <p className="mt-1 text-slate-blue-grey">
+              {authSummary?.publicMessage ??
+                "Auth status is reported without exposing environment values."}
+            </p>
+          </div>
         </div>
 
         <nav className="mt-6 space-y-5" aria-label="Portal navigation">
@@ -94,8 +119,9 @@ export function PortalShell({ children }: { children: React.ReactNode }) {
       <main className="min-w-0 overflow-x-hidden px-4 py-5 sm:px-6 sm:py-8 lg:px-8">
         <div className="mb-6">
           <StaticDemoNotice compact>
-            No real auth, billing, platform connections, customer records, live
-            support tickets or live monitoring are active.
+            {authSummary?.configured
+              ? "Clerk auth foundation may protect internal routes. No live billing, platform integrations, customer automation, support ticketing or monitoring is active."
+              : "No real auth, billing, platform connections, customer records, live support tickets or live monitoring are active."}
           </StaticDemoNotice>
         </div>
         {children}

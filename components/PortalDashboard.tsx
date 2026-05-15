@@ -44,6 +44,8 @@ export function PortalDashboard({ variant = "overview", snapshot }: PortalDashbo
 
 function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) {
   const isDatabaseBacked = snapshot.source === "database";
+  const needsAuthSetup =
+    snapshot.source === "auth-required" || snapshot.source === "workspace-required";
 
   return (
     <div className="space-y-8">
@@ -58,6 +60,34 @@ function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) 
       />
 
       <LiveDataStatusBanner snapshot={snapshot} />
+
+      {needsAuthSetup ? (
+        <PortalSection
+          eyebrow="Workspace access"
+          title={
+            snapshot.source === "auth-required"
+              ? "Sign in to continue"
+              : "Assign this user to a workspace"
+          }
+          body={snapshot.guidance}
+          tone="warm"
+        >
+          {snapshot.source === "auth-required" ? (
+            <Link
+              href="/sign-in"
+              className="inline-flex rounded-md border border-deep-navy px-4 py-2 text-sm font-semibold text-deep-navy hover:bg-deep-navy hover:text-soft-white"
+            >
+              Open sign-in
+            </Link>
+          ) : (
+            <p className="text-sm leading-6 text-slate-blue-grey">
+              Add an active WorkspaceMember record for the signed-in FolioFrame user,
+              then reload the portal. Client-provided workspace ids should not be
+              trusted without server-side membership checks.
+            </p>
+          )}
+        </PortalSection>
+      ) : null}
 
       {isDatabaseBacked && snapshot.workspace ? (
         <PortalSection
@@ -220,6 +250,8 @@ function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) 
 
 function PremiumDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) {
   const isDatabaseBacked = snapshot.source === "database";
+  const needsAuthSetup =
+    snapshot.source === "auth-required" || snapshot.source === "workspace-required";
 
   return (
     <div className="space-y-8">
@@ -234,6 +266,28 @@ function PremiumDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) {
       />
 
       <LiveDataStatusBanner snapshot={snapshot} />
+
+      {needsAuthSetup ? (
+        <PortalSection
+          eyebrow="Workspace access"
+          title={
+            snapshot.source === "auth-required"
+              ? "Sign in to load dashboard data"
+              : "Workspace membership required"
+          }
+          body={snapshot.guidance}
+          tone="warm"
+        >
+          {snapshot.source === "auth-required" ? (
+            <Link
+              href="/sign-in"
+              className="inline-flex rounded-md border border-deep-navy px-4 py-2 text-sm font-semibold text-deep-navy hover:bg-deep-navy hover:text-soft-white"
+            >
+              Open sign-in
+            </Link>
+          ) : null}
+        </PortalSection>
+      ) : null}
 
       {!isDatabaseBacked ? (
         <StaticDemoNotice>

@@ -1,6 +1,6 @@
 import { LiveDataStatusBanner } from "@/components/LiveDataStatusBanner";
 import { PortalSection, PortalStatusBadge } from "@/components/PortalComponents";
-import { getAuthConfigurationStatus } from "@/lib/auth/isAuthConfigured";
+import { getAuthStatusSummary } from "@/lib/auth/config";
 import { getDatabaseFoundationStatus } from "@/lib/live/isDatabaseConfigured";
 import { getPortalWorkspaceSnapshot } from "@/lib/live/portalDataAdapter";
 import { getDatabaseVerificationSummary } from "@/lib/services/databaseVerificationService";
@@ -58,10 +58,20 @@ function yesNo(value: boolean) {
 }
 
 export default async function LiveFoundationPage() {
-  const authStatus = getAuthConfigurationStatus();
+  const authStatus = getAuthStatusSummary();
   const databaseStatus = getDatabaseFoundationStatus();
   const snapshot = await getPortalWorkspaceSnapshot();
   const verification = await getDatabaseVerificationSummary();
+  const nextAction =
+    snapshot.source === "auth-required"
+      ? "Sign in with Clerk, then reload the portal."
+      : snapshot.source === "workspace-required"
+        ? "Assign the signed-in FolioFrame user to an active workspace."
+        : !authStatus.configured
+          ? "Create a Clerk development app and add local values to .env.local."
+          : snapshot.source === "database"
+            ? "Wire protected workspace route selection and begin module persistence."
+            : "Confirm local database and Clerk setup, then reload the portal.";
 
   return (
     <div className="space-y-8">
@@ -72,15 +82,24 @@ export default async function LiveFoundationPage() {
       >
         <LiveDataStatusBanner
           snapshot={snapshot}
-          authConfigured={authStatus.authConfigured}
+          authConfigured={authStatus.configured}
           databaseConfigured={databaseStatus.databaseConfigured}
         />
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">Auth mode</p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {authStatus.mode}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+              {authStatus.reason}
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
             <p className="text-sm font-semibold text-slate-blue-grey">Auth configured</p>
             <p className="mt-2 text-2xl font-semibold text-deep-navy">
-              {yesNo(authStatus.authConfigured)}
+              {yesNo(authStatus.configured)}
             </p>
             <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
               Clerk keys are checked for presence and placeholder values.
@@ -106,6 +125,17 @@ export default async function LiveFoundationPage() {
             </p>
             <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
               Adapter chooses static fallback or database-backed records safely.
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">
+              Workspace context
+            </p>
+            <p className="mt-2 break-words text-2xl font-semibold text-deep-navy">
+              {snapshot.workspaceContextStatus}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+              Workspace data only loads after server-side membership checks pass.
             </p>
           </article>
           <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
@@ -250,8 +280,8 @@ export default async function LiveFoundationPage() {
 
       <PortalSection
         eyebrow="Next setup step"
-        title="Configure local persistence, then protect workspace routes"
-        body="Next, configure local Postgres and run the Prisma migration, configure a Clerk development app, run the fictional seed script, then wire protected workspace route selection. Stripe, Resend and webhooks should remain disconnected until later approved phases."
+        title="Continue from the current auth state"
+        body={`${nextAction} Stripe, Resend and webhooks should remain disconnected until later approved phases.`}
         tone="warm"
       />
     </div>

@@ -1,8 +1,7 @@
-import { getAuthConfigurationStatus, isAuthConfigured } from "./isAuthConfigured";
+import { getAuthMode, getAuthStatusSummary, isClerkConfigured } from "./authMode.ts";
+import { getAuthConfigurationStatus } from "./isAuthConfigured.ts";
 
-export function isClerkConfigured() {
-  return isAuthConfigured();
-}
+export { getAuthMode, getAuthStatusSummary, isClerkConfigured };
 
 export function getAuthFoundationStatus() {
   const status = getAuthConfigurationStatus();
