@@ -17,6 +17,11 @@ const foundationItems = [
     detail: "Server-only workspace services are prepared with database availability checks.",
   },
   {
+    label: "Workspace setup route",
+    value: "present",
+    detail: "Guided local workspace onboarding is available without creating real buyer, payment or integration records.",
+  },
+  {
     label: "Product service layer",
     value: "present",
     detail: "Server-only product and tier services are prepared for workspace-scoped reads.",
@@ -136,6 +141,52 @@ export default async function LiveFoundationPage() {
             </p>
             <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
               Workspace data only loads after server-side membership checks pass.
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">
+              Signed-in user detected
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {yesNo(snapshot.signedInUserDetected)}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+              Reported as a boolean only; no private user details are shown.
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">
+              Workspace membership found
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {yesNo(snapshot.workspaceMembershipFound)}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+              Membership must be active before database-backed portal records load.
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">
+              Workspace setup route
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">yes</p>
+            <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+              /app/workspace-setup is available for local onboarding guidance.
+            </p>
+          </article>
+          <article className="rounded-lg border border-mist-blue bg-soft-white p-4">
+            <p className="text-sm font-semibold text-slate-blue-grey">
+              Database-backed portal possible
+            </p>
+            <p className="mt-2 text-2xl font-semibold text-deep-navy">
+              {yesNo(
+                authStatus.configured &&
+                  databaseStatus.databaseConfigured &&
+                  snapshot.workspaceMembershipFound,
+              )}
+            </p>
+            <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+              Requires Clerk auth, database config and active workspace membership.
             </p>
           </article>
           <article className="rounded-lg border border-mist-blue bg-soft-white p-4">

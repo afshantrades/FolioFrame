@@ -16,7 +16,8 @@
     "db:dev:up": "docker compose -f docker-compose.dev.yml up -d",
     "db:dev:down": "docker compose -f docker-compose.dev.yml down",
     "db:migrate": "prisma migrate dev --name init_database_auth_foundation",
-    "db:studio": "prisma studio"
+    "db:studio": "prisma studio",
+    "db:assign-demo-owner": "tsx scripts/assign-demo-workspace-owner.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^7.3.4",

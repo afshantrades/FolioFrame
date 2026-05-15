@@ -80,11 +80,19 @@ function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) 
               Open sign-in
             </Link>
           ) : (
-            <p className="text-sm leading-6 text-slate-blue-grey">
-              Add an active WorkspaceMember record for the signed-in FolioFrame user,
-              then reload the portal. Client-provided workspace ids should not be
-              trusted without server-side membership checks.
-            </p>
+            <div className="space-y-4">
+              <p className="text-sm leading-6 text-slate-blue-grey">
+                Add an active WorkspaceMember record for the signed-in FolioFrame user,
+                or use the guided workspace setup route to create a fictional local
+                development workspace.
+              </p>
+              <Link
+                href="/app/workspace-setup"
+                className="inline-flex rounded-md border border-deep-navy px-4 py-2 text-sm font-semibold text-deep-navy hover:bg-deep-navy hover:text-soft-white"
+              >
+                Open workspace setup
+              </Link>
+            </div>
           )}
         </PortalSection>
       ) : null}
@@ -95,7 +103,7 @@ function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) 
           title={snapshot.workspace.name}
           body={`Workspace slug: ${snapshot.workspace.slug}. Plan: ${snapshot.workspace.plan}. Status: ${snapshot.workspace.status}.`}
         >
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
             <PortalMetricCard
               label="Products"
               value={String(snapshot.products.length)}
@@ -113,6 +121,18 @@ function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) 
               value={String(snapshot.auditLogs.length)}
               trend="Database"
               note="Recent workspace audit records."
+            />
+            <PortalMetricCard
+              label="Role"
+              value={snapshot.membership?.role ?? "unknown"}
+              trend="Membership"
+              note="Server-verified role for the signed-in workspace member."
+            />
+            <PortalMetricCard
+              label="Membership"
+              value={snapshot.membership?.status ?? "unknown"}
+              trend="Access"
+              note="Workspace data loads only for active memberships."
             />
           </div>
         </PortalSection>
@@ -285,7 +305,14 @@ function PremiumDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) {
             >
               Open sign-in
             </Link>
-          ) : null}
+          ) : (
+            <Link
+              href="/app/workspace-setup"
+              className="inline-flex rounded-md border border-deep-navy px-4 py-2 text-sm font-semibold text-deep-navy hover:bg-deep-navy hover:text-soft-white"
+            >
+              Open workspace setup
+            </Link>
+          )}
         </PortalSection>
       ) : null}
 

@@ -47,12 +47,21 @@ type PortalWorkspaceSnapshotOptions = {
   workspaceContext?: AdapterWorkspaceContext;
 };
 
+type OwnerActionSnapshot = {
+  action: string;
+  module: string;
+  priority: string;
+  dueState: string;
+};
+
 export type PortalWorkspaceSnapshot = {
   source: PortalDataSource;
   isLiveReady: boolean;
   authMode: "disabled-dev" | "clerk";
   authConfigured: boolean;
   databaseConfigured: boolean;
+  signedInUserDetected: boolean;
+  workspaceMembershipFound: boolean;
   workspaceContextStatus:
     | "auth-disabled"
     | "unauthenticated"
@@ -68,6 +77,10 @@ export type PortalWorkspaceSnapshot = {
     name: string;
     slug: string;
     plan: string;
+    status: string;
+  };
+  membership?: {
+    role: string;
     status: string;
   };
   products: {
@@ -103,7 +116,7 @@ export type PortalWorkspaceSnapshot = {
     note?: string;
   }[];
   buyerJourneySteps: readonly (typeof buyerJourneySteps)[number][];
-  ownerActions: readonly (typeof ownerActions)[number][];
+  ownerActions: readonly OwnerActionSnapshot[];
   warnings: string[];
 };
 
@@ -145,6 +158,8 @@ export function createStaticPortalWorkspaceSnapshot(
     authMode: authMode.mode,
     authConfigured: authMode.configured,
     databaseConfigured,
+    signedInUserDetected: false,
+    workspaceMembershipFound: false,
     workspaceContextStatus: authMode.configured ? "database-unavailable" : "auth-disabled",
     guidance: authMode.configured
       ? "Database-backed workspace data is not available, so the portal is showing static demo data."
@@ -171,11 +186,13 @@ function createAccessRequiredSnapshot({
   contextStatus,
   guidance,
   warnings,
+  signedInUserDetected,
 }: {
   source: "auth-required" | "workspace-required";
   contextStatus: "unauthenticated" | "workspace-required" | "user-required";
   guidance: string;
   warnings: string[];
+  signedInUserDetected: boolean;
 }): PortalWorkspaceSnapshot {
   const authMode = getAuthMode();
 
@@ -185,6 +202,8 @@ function createAccessRequiredSnapshot({
     authMode: authMode.mode,
     authConfigured: authMode.configured,
     databaseConfigured: isDatabaseConfigured(),
+    signedInUserDetected,
+    workspaceMembershipFound: false,
     workspaceContextStatus: contextStatus,
     guidance,
     signInHref: source === "auth-required" ? "/sign-in" : undefined,
@@ -196,6 +215,47 @@ function createAccessRequiredSnapshot({
     ownerActions: [],
     warnings,
   };
+}
+
+function readMetadataString(
+  metadata: unknown,
+  key: "action" | "module" | "priority" | "dueState",
+) {
+  if (!metadata || typeof metadata !== "object" || Array.isArray(metadata)) {
+    return null;
+  }
+
+  const value = (metadata as Record<string, unknown>)[key];
+
+  return typeof value === "string" && value.trim() ? value : null;
+}
+
+function ownerActionsFromAuditLogs(
+  auditLogs: readonly {
+    entityType: string;
+    metadata: unknown;
+  }[],
+): OwnerActionSnapshot[] {
+  return auditLogs
+    .filter((log) => log.entityType === "OwnerAction")
+    .map((log) => {
+      const action = readMetadataString(log.metadata, "action");
+      const moduleName = readMetadataString(log.metadata, "module");
+      const priority = readMetadataString(log.metadata, "priority");
+      const dueState = readMetadataString(log.metadata, "dueState");
+
+      if (!action || !moduleName || !priority || !dueState) {
+        return null;
+      }
+
+      return {
+        action,
+        module: moduleName,
+        priority,
+        dueState,
+      };
+    })
+    .filter((item): item is OwnerActionSnapshot => Boolean(item));
 }
 
 async function resolveWorkspaceContext(
@@ -232,6 +292,7 @@ export async function getPortalWorkspaceSnapshot(
         contextStatus: "unauthenticated",
         guidance: "Sign in with Clerk to load a FolioFrame workspace.",
         warnings: ["Auth is configured, but no signed-in Clerk session was found."],
+        signedInUserDetected: false,
       });
     }
 
@@ -245,6 +306,7 @@ export async function getPortalWorkspaceSnapshot(
         guidance:
           "A signed-in user needs an active FolioFrame WorkspaceMember record before workspace data can be shown.",
         warnings: [workspaceContext.publicMessage],
+        signedInUserDetected: true,
       });
     }
 
@@ -277,6 +339,7 @@ export async function getPortalWorkspaceSnapshot(
       listProductTiersForWorkspace(workspace.id),
       listAuditLogsForWorkspace(workspace.id),
     ]);
+    const databaseOwnerActions = ownerActionsFromAuditLogs(auditLogs);
 
     return {
       source: "database",
@@ -284,6 +347,8 @@ export async function getPortalWorkspaceSnapshot(
       authMode: authMode.mode,
       authConfigured: authMode.configured,
       databaseConfigured: true,
+      signedInUserDetected: true,
+      workspaceMembershipFound: true,
       workspaceContextStatus: "ready",
       guidance:
         "Workspace, product, tier and audit records are loaded from the authenticated workspace.",
@@ -293,6 +358,10 @@ export async function getPortalWorkspaceSnapshot(
         slug: workspace.slug,
         plan: workspace.plan,
         status: workspace.status,
+      },
+      membership: {
+        role: workspaceContext.membership.role,
+        status: workspaceContext.membership.status,
       },
       products: products.map((product) => ({
         id: product.id,
@@ -345,13 +414,28 @@ export async function getPortalWorkspaceSnapshot(
           trend: "Database",
           note: "Most recent workspace audit records.",
         },
+        {
+          label: "Role",
+          value: workspaceContext.membership.role,
+          trend: "Membership",
+          note: "Server-verified workspace membership role.",
+        },
+        {
+          label: "Membership",
+          value: workspaceContext.membership.status,
+          trend: "Access",
+          note: "Only active memberships can load workspace data.",
+        },
       ],
       buyerJourneySteps,
-      ownerActions,
+      ownerActions: databaseOwnerActions.length > 0 ? databaseOwnerActions : ownerActions,
       warnings: [
         products.length === 0 ? "No products were found for this workspace." : "",
         productTiers.length === 0 ? "No product tiers were found for this workspace." : "",
-        "Buyer journey and owner action records still use static demo content until later workspace modules are migrated.",
+        databaseOwnerActions.length === 0
+          ? "Owner actions are using static fallback content until workspace owner action records are available."
+          : "",
+        "Buyer journey records still use static demo content until later workspace modules are migrated.",
       ].filter(Boolean),
     };
   } catch (error) {

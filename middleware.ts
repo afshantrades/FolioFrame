@@ -10,6 +10,10 @@ const protectInternalAppRoutes = isClerkConfigured()
   : null;
 
 export default function middleware(request: NextRequest, event: NextFetchEvent) {
+  if (request.nextUrl.pathname.startsWith("/app/workspace-setup")) {
+    return NextResponse.next();
+  }
+
   if (!protectInternalAppRoutes) {
     return NextResponse.next();
   }

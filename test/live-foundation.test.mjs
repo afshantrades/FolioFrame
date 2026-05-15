@@ -9,8 +9,10 @@ import {
   isProbablyProductionDatabaseUrl,
 } from "../lib/live/databaseSafety.ts";
 import { createDatabaseVerificationSummaryFallback } from "../lib/live/databaseVerificationSummary.ts";
+import { getDevOwnerEmail } from "../lib/live/devOwnerEmail.ts";
 import { isDatabaseConfigured } from "../lib/live/isDatabaseConfigured.ts";
 import { getPortalWorkspaceSnapshot } from "../lib/live/portalDataAdapter.ts";
+import { getWorkspaceBootstrapEligibility } from "../lib/services/workspaceBootstrapEligibility.ts";
 
 function withEnv(values, callback) {
   const originals = new Map();
@@ -199,6 +201,29 @@ test("portal data adapter returns workspace-required when membership is missing"
       assert.equal(snapshot.warnings.length > 0, true);
     },
   );
+});
+
+test("workspace bootstrap eligibility allows only missing workspace state", () => {
+  assert.deepEqual(getWorkspaceBootstrapEligibility("workspace-required"), {
+    canCreate: true,
+    reason: "Signed-in user has no active workspace membership yet.",
+  });
+
+  assert.equal(getWorkspaceBootstrapEligibility("ready").canCreate, false);
+  assert.match(
+    getWorkspaceBootstrapEligibility("ready").reason,
+    /Duplicate workspace creation is blocked/,
+  );
+  assert.equal(getWorkspaceBootstrapEligibility("auth-disabled").canCreate, false);
+  assert.equal(getWorkspaceBootstrapEligibility("unauthenticated").canCreate, false);
+});
+
+test("demo owner assignment guard rejects missing and placeholder emails", () => {
+  assert.equal(getDevOwnerEmail({}), null);
+  assert.equal(getDevOwnerEmail({ ADMIN_EMAIL: "admin@example.com" }), null);
+  assert.equal(getDevOwnerEmail({ DEV_OWNER_EMAIL: "owner-placeholder@test.test" }), null);
+  assert.equal(getDevOwnerEmail({ DEV_OWNER_EMAIL: "OWNER@LocalDev.test" }), null);
+  assert.equal(getDevOwnerEmail({ DEV_OWNER_EMAIL: "owner@local.dev" }), "owner@local.dev");
 });
 
 test("getRedactedDatabaseUrlInfo never exposes credentials", () => {

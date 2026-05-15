@@ -16,6 +16,7 @@ const portalLinks = [
       { label: "Handover", href: "/app/handover" },
       { label: "Implementation Docs", href: "/app/implementation-docs" },
       { label: "Live Foundation", href: "/app/live-foundation" },
+      { label: "Workspace Setup", href: "/app/workspace-setup" },
     ],
   },
   {
