@@ -1,1472 +1,353 @@
-[
-  {
-    "route": "/",
-    "viewport": "desktop-1440",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/home-desktop-1440.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 1440,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": true,
-    "focusable": [
-      {
-        "height": 82,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 210
+{
+  "generatedAt": "2026-07-02T18:01:49.055Z",
+  "encoding": "png",
+  "screenshotCount": 15,
+  "failures": [],
+  "results": [
+    {
+      "route": "/",
+      "viewport": "desktop-1440",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/home-desktop-1440.png",
+      "dimensions": {
+        "type": "png",
+        "width": 1440,
+        "height": 7498
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 80
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 139
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 70
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 51
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 107
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 70
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Apply for Signature Launch Premium",
-        "width": 287
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Review FolioFix Audit",
-        "width": 185
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Review Signature Launch",
-        "width": 202
-      },
-      {
-        "height": 210,
-        "tag": "a",
-        "text": "coreFolioFixA structured diagnostic for finding buyer access and delivery weak p",
-        "width": 413
-      },
-      {
-        "height": 210,
-        "tag": "a",
-        "text": "coreDeliveryProofA practical evidence trail for buyer delivery events, messages,",
-        "width": 413
+      "qa": {
+        "route": "/",
+        "viewport": {
+          "width": 1440,
+          "height": 1100
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": true,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 1,
-    "h2Count": 9,
-    "linkCount": 33,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 1440,
-    "staticDemoBoundary": true,
-    "title": "FolioFrame",
-    "viewportHeight": 1100,
-    "viewportWidth": 1440
-  },
-  {
-    "route": "/signature-launch",
-    "viewport": "desktop-1440",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-desktop-1440.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 1440,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": true,
-    "focusable": [
-      {
-        "height": 82,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 210
+    },
+    {
+      "route": "/signature-launch",
+      "viewport": "desktop-1440",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-desktop-1440.png",
+      "dimensions": {
+        "type": "png",
+        "width": 1440,
+        "height": 7996
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 80
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 139
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 70
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 51
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 107
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 70
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Apply for Signature Launch Premium",
-        "width": 287
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Compare pricing",
-        "width": 154
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "FolioFixA structured diagnostic for finding buyer access and delivery weak point",
-        "width": 368
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "DeliveryProofA practical evidence trail for buyer delivery events, messages, and",
-        "width": 368
-      },
-      {
-        "height": 146,
-        "tag": "a",
-        "text": "AccessGuardAccess lifecycle rules for products, buyers, bundles, upgrades, refun",
-        "width": 368
+      "qa": {
+        "route": "/signature-launch",
+        "viewport": {
+          "width": 1440,
+          "height": 1100
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": false,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 1,
-    "h2Count": 14,
-    "linkCount": 43,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 1440,
-    "staticDemoBoundary": false,
-    "title": "FolioFrame",
-    "viewportHeight": 1100,
-    "viewportWidth": 1440
-  },
-  {
-    "route": "/pricing",
-    "viewport": "desktop-1440",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/pricing-desktop-1440.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 1440,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": false,
-    "focusable": [
-      {
-        "height": 82,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 210
+    },
+    {
+      "route": "/pricing",
+      "viewport": "desktop-1440",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/pricing-desktop-1440.png",
+      "dimensions": {
+        "type": "png",
+        "width": 1440,
+        "height": 7663
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 80
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 139
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 70
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 51
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 107
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 70
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Review premium launch",
-        "width": 192
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Start with FolioFix",
-        "width": 154
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Review Pro scope",
-        "width": 151
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Plan the launch system",
-        "width": 188
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Add LaunchRoom",
-        "width": 150
+      "qa": {
+        "route": "/pricing",
+        "viewport": {
+          "width": 1440,
+          "height": 1100
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": false,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 0,
-    "h2Count": 3,
-    "linkCount": 19,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 1440,
-    "staticDemoBoundary": false,
-    "title": "FolioFrame",
-    "viewportHeight": 1100,
-    "viewportWidth": 1440
-  },
-  {
-    "route": "/app",
-    "viewport": "desktop-1440",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/app-desktop-1440.png",
-    "appDashboardContent": true,
-    "approvedImageCount": 3,
-    "clientWidth": 1440,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": false,
-    "focusable": [
-      {
-        "height": 54,
-        "tag": "a",
-        "text": "FolioFrame home",
-        "width": 210
+    },
+    {
+      "route": "/app",
+      "viewport": "desktop-1440",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/app-desktop-1440.png",
+      "dimensions": {
+        "type": "png",
+        "width": 1440,
+        "height": 3512
       },
-      {
-        "height": 0,
-        "tag": "button",
-        "text": "Menu",
-        "width": 0
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Overview",
-        "width": 271
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Premium dashboard",
-        "width": 271
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Buyer journey",
-        "width": 271
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Product matrix",
-        "width": 271
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Handover",
-        "width": 271
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Implementation Docs",
-        "width": 271
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Live Foundation",
-        "width": 271
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Workspace Setup",
-        "width": 271
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "FolioFix",
-        "width": 271
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "DeliveryProof",
-        "width": 271
+      "qa": {
+        "route": "/app",
+        "viewport": {
+          "width": 1440,
+          "height": 1100
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 3,
+        "missingImages": [],
+        "staticDemoBoundary": true,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 0,
-    "h2Count": 7,
-    "linkCount": 34,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": false,
-    "pricingRecommended": false,
-    "scrollWidth": 1440,
-    "staticDemoBoundary": true,
-    "title": "FolioFrame",
-    "viewportHeight": 1100,
-    "viewportWidth": 1440
-  },
-  {
-    "route": "/signature-launch-system",
-    "viewport": "desktop-1440",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-system-desktop-1440.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 1440,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": true,
-    "focusable": [
-      {
-        "height": 82,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 210
+    },
+    {
+      "route": "/signature-launch-system",
+      "viewport": "desktop-1440",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-system-desktop-1440.png",
+      "dimensions": {
+        "type": "png",
+        "width": 1440,
+        "height": 7996
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 80
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 139
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 70
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 51
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 107
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 70
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Apply for Signature Launch Premium",
-        "width": 287
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Compare pricing",
-        "width": 154
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "FolioFixA structured diagnostic for finding buyer access and delivery weak point",
-        "width": 368
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "DeliveryProofA practical evidence trail for buyer delivery events, messages, and",
-        "width": 368
-      },
-      {
-        "height": 146,
-        "tag": "a",
-        "text": "AccessGuardAccess lifecycle rules for products, buyers, bundles, upgrades, refun",
-        "width": 368
+      "qa": {
+        "route": "/signature-launch-system",
+        "viewport": {
+          "width": 1440,
+          "height": 1100
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": false,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 1,
-    "h2Count": 14,
-    "linkCount": 43,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 1440,
-    "staticDemoBoundary": false,
-    "title": "FolioFrame",
-    "viewportHeight": 1100,
-    "viewportWidth": 1440
-  },
-  {
-    "route": "/",
-    "viewport": "tablet-768",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/home-tablet-768.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 768,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": true,
-    "focusable": [
-      {
-        "height": 82,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 210
+    },
+    {
+      "route": "/",
+      "viewport": "tablet-768",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/home-tablet-768.png",
+      "dimensions": {
+        "type": "png",
+        "width": 768,
+        "height": 10795
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 80
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 139
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 70
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 51
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 107
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 70
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Apply for Signature Launch Premium",
-        "width": 287
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Review FolioFix Audit",
-        "width": 185
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Review Signature Launch",
-        "width": 202
-      },
-      {
-        "height": 210,
-        "tag": "a",
-        "text": "coreFolioFixA structured diagnostic for finding buyer access and delivery weak p",
-        "width": 350
-      },
-      {
-        "height": 210,
-        "tag": "a",
-        "text": "coreDeliveryProofA practical evidence trail for buyer delivery events, messages,",
-        "width": 350
+      "qa": {
+        "route": "/",
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": true,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 1,
-    "h2Count": 9,
-    "linkCount": 33,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 768,
-    "staticDemoBoundary": true,
-    "title": "FolioFrame",
-    "viewportHeight": 1024,
-    "viewportWidth": 768
-  },
-  {
-    "route": "/signature-launch",
-    "viewport": "tablet-768",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-tablet-768.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 768,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": true,
-    "focusable": [
-      {
-        "height": 82,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 210
+    },
+    {
+      "route": "/signature-launch",
+      "viewport": "tablet-768",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-tablet-768.png",
+      "dimensions": {
+        "type": "png",
+        "width": 768,
+        "height": 11467
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 80
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 139
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 70
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 51
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 107
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 70
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Apply for Signature Launch Premium",
-        "width": 287
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Compare pricing",
-        "width": 154
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "FolioFixA structured diagnostic for finding buyer access and delivery weak point",
-        "width": 354
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "DeliveryProofA practical evidence trail for buyer delivery events, messages, and",
-        "width": 354
-      },
-      {
-        "height": 146,
-        "tag": "a",
-        "text": "AccessGuardAccess lifecycle rules for products, buyers, bundles, upgrades, refun",
-        "width": 354
+      "qa": {
+        "route": "/signature-launch",
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": false,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 1,
-    "h2Count": 14,
-    "linkCount": 43,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 768,
-    "staticDemoBoundary": false,
-    "title": "FolioFrame",
-    "viewportHeight": 1024,
-    "viewportWidth": 768
-  },
-  {
-    "route": "/pricing",
-    "viewport": "tablet-768",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/pricing-tablet-768.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 768,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": false,
-    "focusable": [
-      {
-        "height": 82,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 210
+    },
+    {
+      "route": "/pricing",
+      "viewport": "tablet-768",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/pricing-tablet-768.png",
+      "dimensions": {
+        "type": "png",
+        "width": 768,
+        "height": 11559
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 80
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 139
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 70
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 51
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 107
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 70
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Review premium launch",
-        "width": 192
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Start with FolioFix",
-        "width": 154
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Review Pro scope",
-        "width": 151
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Plan the launch system",
-        "width": 188
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Add LaunchRoom",
-        "width": 150
+      "qa": {
+        "route": "/pricing",
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": false,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 0,
-    "h2Count": 3,
-    "linkCount": 19,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 768,
-    "staticDemoBoundary": false,
-    "title": "FolioFrame",
-    "viewportHeight": 1024,
-    "viewportWidth": 768
-  },
-  {
-    "route": "/app",
-    "viewport": "tablet-768",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/app-tablet-768.png",
-    "appDashboardContent": true,
-    "approvedImageCount": 3,
-    "clientWidth": 768,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": false,
-    "focusable": [
-      {
-        "height": 54,
-        "tag": "a",
-        "text": "FolioFrame home",
-        "width": 210
+    },
+    {
+      "route": "/app",
+      "viewport": "tablet-768",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/app-tablet-768.png",
+      "dimensions": {
+        "type": "png",
+        "width": 768,
+        "height": 5000
       },
-      {
-        "height": 38,
-        "tag": "button",
-        "text": "Menu",
-        "width": 63
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Overview",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Premium dashboard",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Buyer journey",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Product matrix",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Handover",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Implementation Docs",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Live Foundation",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Workspace Setup",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "FolioFix",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "DeliveryProof",
-        "width": 0
+      "qa": {
+        "route": "/app",
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 3,
+        "missingImages": [],
+        "staticDemoBoundary": true,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 0,
-    "h2Count": 7,
-    "linkCount": 34,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": false,
-    "pricingRecommended": false,
-    "scrollWidth": 768,
-    "staticDemoBoundary": true,
-    "title": "FolioFrame",
-    "viewportHeight": 1024,
-    "viewportWidth": 768
-  },
-  {
-    "route": "/signature-launch-system",
-    "viewport": "tablet-768",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-system-tablet-768.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 768,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": true,
-    "focusable": [
-      {
-        "height": 82,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 210
+    },
+    {
+      "route": "/signature-launch-system",
+      "viewport": "tablet-768",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-system-tablet-768.png",
+      "dimensions": {
+        "type": "png",
+        "width": 768,
+        "height": 11467
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 80
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 139
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 70
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 51
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 107
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 70
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Apply for Signature Launch Premium",
-        "width": 287
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Compare pricing",
-        "width": 154
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "FolioFixA structured diagnostic for finding buyer access and delivery weak point",
-        "width": 354
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "DeliveryProofA practical evidence trail for buyer delivery events, messages, and",
-        "width": 354
-      },
-      {
-        "height": 146,
-        "tag": "a",
-        "text": "AccessGuardAccess lifecycle rules for products, buyers, bundles, upgrades, refun",
-        "width": 354
+      "qa": {
+        "route": "/signature-launch-system",
+        "viewport": {
+          "width": 768,
+          "height": 1024
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": false,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 1,
-    "h2Count": 14,
-    "linkCount": 43,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 768,
-    "staticDemoBoundary": false,
-    "title": "FolioFrame",
-    "viewportHeight": 1024,
-    "viewportWidth": 768
-  },
-  {
-    "route": "/",
-    "viewport": "mobile-390",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/home-mobile-390.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 390,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": true,
-    "focusable": [
-      {
-        "height": 74,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 207
+    },
+    {
+      "route": "/",
+      "viewport": "mobile-390",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/home-mobile-390.png",
+      "dimensions": {
+        "type": "png",
+        "width": 390,
+        "height": 15365
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 286
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 286
-      },
-      {
-        "height": 44,
-        "tag": "a",
-        "text": "Apply for Signature Launch Premium",
-        "width": 308
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Review FolioFix Audit",
-        "width": 308
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Review Signature Launch",
-        "width": 202
-      },
-      {
-        "height": 210,
-        "tag": "a",
-        "text": "coreFolioFixA structured diagnostic for finding buyer access and delivery weak p",
-        "width": 326
-      },
-      {
-        "height": 210,
-        "tag": "a",
-        "text": "coreDeliveryProofA practical evidence trail for buyer delivery events, messages,",
-        "width": 326
+      "qa": {
+        "route": "/",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": true,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 1,
-    "h2Count": 9,
-    "linkCount": 33,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 390,
-    "staticDemoBoundary": true,
-    "title": "FolioFrame",
-    "viewportHeight": 844,
-    "viewportWidth": 390
-  },
-  {
-    "route": "/signature-launch",
-    "viewport": "mobile-390",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-mobile-390.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 390,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": true,
-    "focusable": [
-      {
-        "height": 74,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 207
+    },
+    {
+      "route": "/signature-launch",
+      "viewport": "mobile-390",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-mobile-390.png",
+      "dimensions": {
+        "type": "png",
+        "width": 390,
+        "height": 16535
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 286
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 286
-      },
-      {
-        "height": 44,
-        "tag": "a",
-        "text": "Apply for Signature Launch Premium",
-        "width": 326
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Compare pricing",
-        "width": 326
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "FolioFixA structured diagnostic for finding buyer access and delivery weak point",
-        "width": 326
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "DeliveryProofA practical evidence trail for buyer delivery events, messages, and",
-        "width": 326
-      },
-      {
-        "height": 146,
-        "tag": "a",
-        "text": "AccessGuardAccess lifecycle rules for products, buyers, bundles, upgrades, refun",
-        "width": 326
+      "qa": {
+        "route": "/signature-launch",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": false,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 1,
-    "h2Count": 14,
-    "linkCount": 43,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 390,
-    "staticDemoBoundary": false,
-    "title": "FolioFrame",
-    "viewportHeight": 844,
-    "viewportWidth": 390
-  },
-  {
-    "route": "/pricing",
-    "viewport": "mobile-390",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/pricing-mobile-390.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 390,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": false,
-    "focusable": [
-      {
-        "height": 74,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 207
+    },
+    {
+      "route": "/pricing",
+      "viewport": "mobile-390",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/pricing-mobile-390.png",
+      "dimensions": {
+        "type": "png",
+        "width": 390,
+        "height": 13383
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 286
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Review premium launch",
-        "width": 192
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Start with FolioFix",
-        "width": 154
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Review Pro scope",
-        "width": 151
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Plan the launch system",
-        "width": 188
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Add LaunchRoom",
-        "width": 150
+      "qa": {
+        "route": "/pricing",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": false,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 0,
-    "h2Count": 3,
-    "linkCount": 19,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 390,
-    "staticDemoBoundary": false,
-    "title": "FolioFrame",
-    "viewportHeight": 844,
-    "viewportWidth": 390
-  },
-  {
-    "route": "/app",
-    "viewport": "mobile-390",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/app-mobile-390.png",
-    "appDashboardContent": true,
-    "approvedImageCount": 3,
-    "clientWidth": 390,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": false,
-    "focusable": [
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "FolioFrame home",
-        "width": 180
+    },
+    {
+      "route": "/app",
+      "viewport": "mobile-390",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/app-mobile-390.png",
+      "dimensions": {
+        "type": "png",
+        "width": 390,
+        "height": 6416
       },
-      {
-        "height": 38,
-        "tag": "button",
-        "text": "Menu",
-        "width": 63
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Overview",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Premium dashboard",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Buyer journey",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Product matrix",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Handover",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Implementation Docs",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Live Foundation",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "Workspace Setup",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "FolioFix",
-        "width": 0
-      },
-      {
-        "height": 0,
-        "tag": "a",
-        "text": "DeliveryProof",
-        "width": 0
+      "qa": {
+        "route": "/app",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 3,
+        "missingImages": [],
+        "staticDemoBoundary": true,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 0,
-    "h2Count": 7,
-    "linkCount": 34,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": false,
-    "pricingRecommended": false,
-    "scrollWidth": 390,
-    "staticDemoBoundary": true,
-    "title": "FolioFrame",
-    "viewportHeight": 844,
-    "viewportWidth": 390
-  },
-  {
-    "route": "/signature-launch-system",
-    "viewport": "mobile-390",
-    "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-system-mobile-390.png",
-    "appDashboardContent": false,
-    "approvedImageCount": 4,
-    "clientWidth": 390,
-    "containsUnsupportedLiveClaim": false,
-    "firstHeadingVisible": true,
-    "focusable": [
-      {
-        "height": 74,
-        "tag": "a",
-        "text": "Checkout-to-customer delivery",
-        "width": 207
+    },
+    {
+      "route": "/signature-launch-system",
+      "viewport": "mobile-390",
+      "file": "/Users/Afshan/Documents/Codex/2026-05-14/you-are-working-on-the-folioframe/docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/signature-launch-system-mobile-390.png",
+      "dimensions": {
+        "type": "png",
+        "width": 390,
+        "height": 16535
       },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Modules",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Signature Launch",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Pricing",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "FAQ",
-        "width": 286
-      },
-      {
-        "height": 38,
-        "tag": "a",
-        "text": "Static portal",
-        "width": 286
-      },
-      {
-        "height": 36,
-        "tag": "a",
-        "text": "Apply",
-        "width": 286
-      },
-      {
-        "height": 44,
-        "tag": "a",
-        "text": "Apply for Signature Launch Premium",
-        "width": 326
-      },
-      {
-        "height": 46,
-        "tag": "a",
-        "text": "Compare pricing",
-        "width": 326
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "FolioFixA structured diagnostic for finding buyer access and delivery weak point",
-        "width": 326
-      },
-      {
-        "height": 122,
-        "tag": "a",
-        "text": "DeliveryProofA practical evidence trail for buyer delivery events, messages, and",
-        "width": 326
-      },
-      {
-        "height": 146,
-        "tag": "a",
-        "text": "AccessGuardAccess lifecycle rules for products, buyers, bundles, upgrades, refun",
-        "width": 326
+      "qa": {
+        "route": "/signature-launch-system",
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "noHorizontalOverflow": true,
+        "logoVisible": true,
+        "approvedImageCount": 4,
+        "missingImages": [],
+        "staticDemoBoundary": false,
+        "unsupportedLiveClaim": false
       }
-    ],
-    "h1Count": 1,
-    "h2Count": 14,
-    "linkCount": 43,
-    "logoSrc": "/assets/logos/APPROVED_primary_logo_transparent.png",
-    "logoVisible": true,
-    "missingImages": [],
-    "noHorizontalOverflow": true,
-    "premiumPriceVisible": true,
-    "pricingRecommended": false,
-    "scrollWidth": 390,
-    "staticDemoBoundary": false,
-    "title": "FolioFrame",
-    "viewportHeight": 844,
-    "viewportWidth": 390
-  }
-]
+    }
+  ]
+}

@@ -67,6 +67,12 @@ Screenshots saved under:
 
 `docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/`
 
+Encoding correction:
+
+- Screenshot artifacts were regenerated after the QA pass to correct a file encoding mismatch where most `.png` filenames contained JPEG-encoded data.
+- `file docs/qa/screenshots/final-buyer-ready-launch-qa-2026-07-02/*.png` now reports `PNG image data` for every screenshot file.
+- Regenerated artifacts preserve the same route and viewport coverage.
+
 Captured routes:
 
 - `/`
@@ -115,6 +121,7 @@ Browser QA signals from the screenshot pass:
 - Approved asset path check - passed
 - Rejected generated asset filename grep - no matches
 - Locked colour grep - passed
+- Screenshot encoding verification - all screenshot `.png` files report `PNG image data`
 
 ## Remaining Blockers
 
