@@ -5,6 +5,7 @@ import type { FolioFrameOffer } from "@/content/folioframeOffers";
 type OfferCardProps = {
   offer: FolioFrameOffer;
   compact?: boolean;
+  emphasis?: "standard" | "recommended";
 };
 
 function OfferList({ title, items }: { title: string; items: readonly string[] }) {
@@ -13,7 +14,7 @@ function OfferList({ title, items }: { title: string; items: readonly string[] }
       <p className="text-xs font-semibold uppercase tracking-normal text-deep-navy">
         {title}
       </p>
-      <ul className="mt-2 space-y-2 text-sm leading-6 text-slate-blue-grey">
+      <ul className="mt-2 space-y-1.5 text-sm leading-6 text-slate-blue-grey">
         {items.map((item) => (
           <li key={item}>- {item}</li>
         ))}
@@ -22,22 +23,36 @@ function OfferList({ title, items }: { title: string; items: readonly string[] }
   );
 }
 
-export function OfferCard({ offer, compact = false }: OfferCardProps) {
+export function OfferCard({
+  offer,
+  compact = false,
+  emphasis = "standard",
+}: OfferCardProps) {
   const includedModuleNames = getOfferModules(offer.slug).map(
     (moduleInfo) => moduleInfo.name,
   );
+  const isRecommended = emphasis === "recommended";
 
   return (
     <article
-      className={
-        offer.featured
-          ? "rounded-lg border border-champagne-line bg-warm-ivory p-6 shadow-soft"
-          : "rounded-lg border border-mist-blue bg-soft-white p-6"
-      }
+      className={`rounded-lg border p-4 sm:p-6 ${
+        isRecommended
+          ? "border-ink-navy bg-warm-ivory shadow-soft"
+          : offer.featured
+            ? "border-champagne-line bg-warm-ivory/70 shadow-soft"
+            : "border-mist-blue bg-soft-white"
+      }`}
     >
-      <div className="flex flex-wrap items-start justify-between gap-4">
+      {isRecommended ? (
+        <p className="mb-4 inline-flex rounded-md border border-champagne-line bg-soft-white px-3 py-1 text-xs font-semibold uppercase tracking-wide text-ink-navy">
+          Recommended premium implementation
+        </p>
+      ) : null}
+      <div className="flex flex-wrap items-start justify-between gap-3 sm:gap-4">
         <div>
-          <h3 className="text-xl font-semibold text-deep-navy">{offer.name}</h3>
+          <h3 className="text-lg font-semibold text-deep-navy sm:text-xl">
+            {offer.name}
+          </h3>
           <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
             {offer.outcome}
           </p>

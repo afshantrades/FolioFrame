@@ -34,10 +34,10 @@ export function LiveDataStatusBanner({
 
   return (
     <div
-      className={`rounded-lg border p-4 text-sm leading-6 ${
+      className={`rounded-md border p-3 text-sm leading-6 sm:p-4 ${
         isDatabaseBacked
-          ? "border-folio-blue bg-mist text-ink-navy"
-          : "border-champagne-line bg-warm-ivory text-ink-navy"
+          ? "border-folio-blue/70 bg-mist/70 text-ink-navy"
+          : "border-champagne-line/70 bg-soft-white text-ink-navy"
       }`}
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
@@ -46,14 +46,14 @@ export function LiveDataStatusBanner({
           <p className="mt-1 text-graphite">{body}</p>
           <p className="mt-1 text-graphite">{snapshot.guidance}</p>
         </div>
-        <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide">
-          <span className="rounded-md border border-ink-navy px-2 py-1">
+        <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide text-graphite">
+          <span className="rounded-md border border-mist bg-soft-white px-2 py-1">
             Auth: {authState ? "configured" : "not configured"}
           </span>
-          <span className="rounded-md border border-ink-navy px-2 py-1">
+          <span className="rounded-md border border-mist bg-soft-white px-2 py-1">
             Database: {databaseState ? "configured" : "not configured"}
           </span>
-          <span className="rounded-md border border-ink-navy px-2 py-1">
+          <span className="rounded-md border border-mist bg-soft-white px-2 py-1">
             Source: {snapshot.source}
           </span>
         </div>
@@ -68,7 +68,7 @@ export function LiveDataStatusBanner({
         </Link>
       ) : null}
 
-      <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-ink-navy">
+      <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-graphite">
         Production integrations not connected
       </p>
       <p className="mt-1 text-graphite">

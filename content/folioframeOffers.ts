@@ -186,7 +186,7 @@ export const folioframeOffers = [
       "Real auth implementation",
       "Production integration buildout",
       "Ongoing retainer review",
-      "Final logo or brand artwork",
+      "New custom brand artwork creation",
     ],
     ownerResponsibilities: [
       "Approve entitlement and access lifecycle rules",
@@ -199,7 +199,7 @@ export const folioframeOffers = [
     safeScopeBoundary:
       "Premium scope stays operational: mapped, tested, documented, owner-approved, and explicit about static/demo boundaries.",
     ctaLabel: "Review premium launch",
-    path: "/signature-launch-system",
+    path: "/signature-launch",
     featured: true,
   },
   {

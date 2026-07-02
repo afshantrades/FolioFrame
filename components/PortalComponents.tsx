@@ -31,18 +31,25 @@ export function PortalStatusBadge({
 
 export function StaticDemoNotice({
   compact = false,
+  tone = "default",
   children,
 }: {
   compact?: boolean;
+  tone?: "default" | "quiet";
   children?: ReactNode;
 }) {
+  const toneClass =
+    tone === "quiet"
+      ? "border-mist bg-soft-white/75 text-ink-navy"
+      : "border-pastel-blue bg-mist-blue text-deep-navy";
+
   return (
     <div
-      className={`min-w-0 max-w-full overflow-hidden rounded-lg border border-pastel-blue bg-mist-blue text-deep-navy ${
-        compact ? "p-3 text-xs leading-5" : "p-4 text-sm leading-6"
+      className={`min-w-0 max-w-full overflow-hidden rounded-md border ${toneClass} ${
+        compact ? "p-2.5 text-xs leading-5" : "p-4 text-sm leading-6"
       }`}
     >
-      <p className="font-semibold">Static/demo portal only</p>
+      <p className="font-semibold">Static/demo portal</p>
       <p className={compact ? "mt-1 text-slate-blue-grey" : "mt-2 text-slate-blue-grey"}>
         {children ?? staticDemoNotice}
       </p>
@@ -62,7 +69,7 @@ export function PortalMetricCard({
   note?: string;
 }) {
   return (
-    <article className="min-w-0 rounded-lg border border-mist-blue bg-soft-white p-5">
+    <article className="min-w-0 rounded-lg border border-mist-blue bg-soft-white p-4 sm:p-5">
       <p className="text-sm font-semibold text-slate-blue-grey">{label}</p>
       <p className="mt-2 break-words text-2xl font-semibold text-deep-navy sm:text-3xl">
         {value}
@@ -100,7 +107,7 @@ export function PortalSection({
         : "border-mist-blue bg-soft-white";
 
   return (
-    <section className={`min-w-0 rounded-lg border p-5 sm:p-6 ${toneClass}`}>
+    <section className={`min-w-0 rounded-lg border p-4 sm:p-6 ${toneClass}`}>
       {eyebrow ? (
         <p className="text-sm font-semibold text-slate-blue-grey">{eyebrow}</p>
       ) : null}
@@ -114,7 +121,7 @@ export function PortalSection({
           </p>
         ) : null}
       </div>
-      {children ? <div className="mt-5">{children}</div> : null}
+      {children ? <div className="mt-4 sm:mt-5">{children}</div> : null}
     </section>
   );
 }

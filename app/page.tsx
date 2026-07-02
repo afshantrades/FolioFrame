@@ -67,19 +67,33 @@ export default function HomePage() {
               delivery: payment, access, onboarding, support, follow-up, migration,
               reporting and verified delivery proof.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link
-                href="/apply"
-                className="inline-flex w-full max-w-full justify-center rounded-md bg-ink-navy px-5 py-3 text-sm font-semibold text-soft-white hover:bg-graphite sm:w-auto"
-              >
-                Apply for Signature Launch Premium
-              </Link>
-              <Link
-                href="/foliofix"
-                className="inline-flex w-full max-w-full justify-center rounded-md border border-champagne-line bg-soft-white px-5 py-3 text-sm font-semibold text-ink-navy hover:bg-mist sm:w-auto"
-              >
-                Book FolioFix Audit
-              </Link>
+            <div className="mt-8 border-l-2 border-champagne-line pl-4">
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/apply"
+                  className="inline-flex w-full max-w-full justify-center rounded-md bg-ink-navy px-5 py-3 text-sm font-semibold text-soft-white shadow-soft hover:bg-graphite sm:w-auto"
+                >
+                  Apply for Signature Launch Premium
+                </Link>
+                <Link
+                  href="/foliofix"
+                  className="inline-flex w-full max-w-full justify-center rounded-md border border-champagne-line bg-soft-white px-5 py-3 text-sm font-semibold text-ink-navy hover:bg-mist sm:w-auto"
+                >
+                  Book FolioFix Audit
+                </Link>
+              </div>
+              <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide text-graphite">
+                {["Mapped", "Tested", "Documented", "Owner-approved"].map(
+                  (item) => (
+                    <span
+                      key={item}
+                      className="rounded-md border border-mist bg-soft-white/80 px-2.5 py-1"
+                    >
+                      {item}
+                    </span>
+                  ),
+                )}
+              </div>
             </div>
           </div>
           <div className="overflow-hidden rounded-lg border border-champagne-line bg-soft-white p-5 shadow-soft">
