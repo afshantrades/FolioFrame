@@ -346,12 +346,12 @@ export default function SignatureLaunchSystemPage() {
           <h2 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight">
             Apply with a launch that needs mapped access, delivery and support.
           </h2>
-          <Link
-            href="/apply"
-            className="mt-6 inline-flex max-w-full rounded-md bg-soft-white px-5 py-3 text-sm font-semibold text-deep-navy hover:bg-mist-blue"
-          >
-            Open application preview
-          </Link>
+              <Link
+                href="/apply"
+                className="mt-6 inline-flex max-w-full rounded-md bg-soft-white px-5 py-3 text-sm font-semibold text-deep-navy hover:bg-mist-blue"
+              >
+                Open static application preview
+              </Link>
         </div>
       </section>
     </MarketingPage>

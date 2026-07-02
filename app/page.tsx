@@ -79,7 +79,7 @@ export default function HomePage() {
                   href="/foliofix"
                   className="inline-flex w-full max-w-full justify-center rounded-md border border-champagne-line bg-soft-white px-5 py-3 text-sm font-semibold text-ink-navy hover:bg-mist sm:w-auto"
                 >
-                  Book FolioFix Audit
+                  Review FolioFix Audit
                 </Link>
               </div>
               <div className="mt-4 flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide text-graphite">
@@ -302,7 +302,7 @@ export default function HomePage() {
 
       <section className="px-5 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto rounded-lg border border-champagne-line bg-deep-navy p-8 text-soft-white">
-          <p className="text-sm font-semibold text-pastel-blue">Apply CTA</p>
+          <p className="text-sm font-semibold text-pastel-blue">Application preview</p>
           <h2 className="mt-3 max-w-3xl text-3xl font-semibold leading-tight">
             Ready to review a checkout-to-customer system before it carries buyers?
           </h2>

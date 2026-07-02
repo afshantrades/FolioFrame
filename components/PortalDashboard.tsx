@@ -54,6 +54,7 @@ function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) 
       <SectionHeader
         eyebrow={isDatabaseBacked ? "Internal live foundation" : "Internal static portal"}
         title="FolioFrame command centre"
+        headingLevel="h1"
         body={
           isDatabaseBacked
             ? "A workspace-aware foundation view for FolioFrame records. Some module sections still use static fallback content until later persistence phases."
@@ -302,6 +303,7 @@ function PremiumDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) {
       <SectionHeader
         eyebrow="Premium dashboard"
         title="Signature Launch Premium review"
+        headingLevel="h1"
         body={
           isDatabaseBacked
             ? "A hybrid dashboard using database-backed workspace records plus static fallback module content while the live portal is being migrated safely."
