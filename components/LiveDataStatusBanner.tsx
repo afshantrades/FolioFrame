@@ -36,24 +36,24 @@ export function LiveDataStatusBanner({
     <div
       className={`rounded-lg border p-4 text-sm leading-6 ${
         isDatabaseBacked
-          ? "border-pastel-blue bg-mist-blue text-deep-navy"
-          : "border-champagne-line bg-warm-ivory text-deep-navy"
+          ? "border-folio-blue bg-mist text-ink-navy"
+          : "border-champagne-line bg-warm-ivory text-ink-navy"
       }`}
     >
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
           <p className="font-semibold">{title}</p>
-          <p className="mt-1 text-slate-blue-grey">{body}</p>
-          <p className="mt-1 text-slate-blue-grey">{snapshot.guidance}</p>
+          <p className="mt-1 text-graphite">{body}</p>
+          <p className="mt-1 text-graphite">{snapshot.guidance}</p>
         </div>
         <div className="flex flex-wrap gap-2 text-xs font-semibold uppercase tracking-wide">
-          <span className="rounded-md border border-deep-navy px-2 py-1">
+          <span className="rounded-md border border-ink-navy px-2 py-1">
             Auth: {authState ? "configured" : "not configured"}
           </span>
-          <span className="rounded-md border border-deep-navy px-2 py-1">
+          <span className="rounded-md border border-ink-navy px-2 py-1">
             Database: {databaseState ? "configured" : "not configured"}
           </span>
-          <span className="rounded-md border border-deep-navy px-2 py-1">
+          <span className="rounded-md border border-ink-navy px-2 py-1">
             Source: {snapshot.source}
           </span>
         </div>
@@ -62,22 +62,22 @@ export function LiveDataStatusBanner({
       {isAuthRequired ? (
         <Link
           href="/sign-in"
-          className="mt-4 inline-flex rounded-md border border-deep-navy px-4 py-2 text-sm font-semibold text-deep-navy hover:bg-deep-navy hover:text-soft-white"
+          className="mt-4 inline-flex rounded-md border border-ink-navy px-4 py-2 text-sm font-semibold text-ink-navy hover:bg-ink-navy hover:text-soft-white"
         >
           Sign in
         </Link>
       ) : null}
 
-      <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-deep-navy">
+      <p className="mt-3 text-xs font-semibold uppercase tracking-wide text-ink-navy">
         Production integrations not connected
       </p>
-      <p className="mt-1 text-slate-blue-grey">
+      <p className="mt-1 text-graphite">
         Stripe, Resend, webhooks, public form handling and production credentials
         remain disconnected.
       </p>
 
       {snapshot.warnings.length > 0 ? (
-        <ul className="mt-3 list-disc space-y-1 pl-5 text-slate-blue-grey">
+        <ul className="mt-3 list-disc space-y-1 pl-5 text-graphite">
           {snapshot.warnings.map((warning) => (
             <li key={warning}>{warning}</li>
           ))}

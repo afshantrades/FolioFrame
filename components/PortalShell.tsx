@@ -63,9 +63,9 @@ export function PortalShell({
     authSummary?.mode === "clerk" ? "Auth mode: Clerk" : "Auth mode: disabled-dev";
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-soft-white text-deep-navy lg:grid lg:grid-cols-[320px_minmax(0,1fr)]">
-      <aside className="border-b border-mist-blue bg-warm-ivory px-4 py-5 sm:px-6 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-b-0 lg:border-r">
-        <div className="flex flex-col gap-5">
+    <div className="min-h-screen overflow-x-hidden bg-soft-white text-ink-navy lg:grid lg:grid-cols-[320px_minmax(0,1fr)]">
+      <aside className="max-w-full overflow-x-hidden border-b border-mist bg-warm-ivory px-4 py-5 sm:px-6 lg:sticky lg:top-0 lg:h-screen lg:overflow-y-auto lg:border-b-0 lg:border-r">
+        <div className="flex max-w-full flex-col gap-5">
           <Link href="/" aria-label="FolioFrame home" className="inline-flex">
             <BrandLockup />
           </Link>
@@ -74,9 +74,9 @@ export function PortalShell({
               ? "Clerk auth foundation is active for internal routes. Billing, platform connections, customer automation and live monitoring remain disconnected."
               : "Static/demo only. No real auth, billing, customer data, platform connections or live monitoring are active."}
           </StaticDemoNotice>
-          <div className="rounded-lg border border-champagne-line bg-soft-white p-3 text-xs leading-5 text-deep-navy">
+          <div className="rounded-lg border border-champagne-line bg-soft-white p-3 text-xs leading-5 text-ink-navy">
             <p className="font-semibold">{authModeLabel}</p>
-            <p className="mt-1 text-slate-blue-grey">
+            <p className="mt-1 text-graphite">
               {authSummary?.publicMessage ??
                 "Auth status is reported without exposing environment values."}
             </p>
@@ -86,10 +86,10 @@ export function PortalShell({
         <nav className="mt-6 space-y-5" aria-label="Portal navigation">
           {portalLinks.map((group) => (
             <div key={group.group}>
-              <p className="px-1 text-xs font-semibold uppercase tracking-wide text-slate-blue-grey">
+              <p className="px-1 text-xs font-semibold uppercase tracking-wide text-graphite">
                 {group.group}
               </p>
-              <div className="mt-2 grid min-w-0 grid-cols-2 gap-2 sm:grid-cols-3 lg:grid-cols-1">
+              <div className="mt-2 grid min-w-0 grid-cols-1 gap-2 sm:grid-cols-3 lg:grid-cols-1">
                 {group.links.map((item) => {
                   const isActive =
                     pathname === item.href ||
@@ -102,8 +102,8 @@ export function PortalShell({
                       aria-current={isActive ? "page" : undefined}
                       className={`min-w-0 overflow-hidden rounded-md border px-2 py-2 text-[13px] font-semibold leading-5 transition sm:px-3 sm:text-sm ${
                         isActive
-                          ? "border-deep-navy bg-deep-navy text-soft-white shadow-sm"
-                          : "border-transparent text-deep-navy hover:border-pastel-blue hover:bg-mist-blue"
+                          ? "border-ink-navy bg-ink-navy text-soft-white shadow-sm"
+                          : "border-transparent text-ink-navy hover:border-folio-blue hover:bg-mist"
                       }`}
                     >
                       <span className="block whitespace-normal break-all sm:break-words">

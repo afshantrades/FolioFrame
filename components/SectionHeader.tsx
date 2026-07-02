@@ -20,13 +20,13 @@ export function SectionHeader({
       }
     >
       {eyebrow ? (
-        <p className="text-sm font-semibold text-slate-blue-grey">{eyebrow}</p>
+        <p className="text-sm font-semibold text-graphite">{eyebrow}</p>
       ) : null}
-      <h2 className="mt-3 break-words text-2xl font-semibold text-deep-navy sm:text-4xl">
+      <h2 className="mt-3 max-w-full break-words text-lg font-semibold text-ink-navy [overflow-wrap:anywhere] sm:text-4xl">
         {title}
       </h2>
       {body ? (
-        <p className="mt-4 break-words text-base leading-7 text-slate-blue-grey sm:text-lg">
+        <p className="mt-4 break-words text-base leading-7 text-graphite sm:text-lg">
           {body}
         </p>
       ) : null}

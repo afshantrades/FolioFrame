@@ -1,10 +1,12 @@
 import Link from "next/link";
+import { BrandAssetImage } from "@/components/BrandAssetImage";
 import { FAQBlock } from "@/components/FAQBlock";
 import { MarketingPage } from "@/components/MarketingPage";
 import { ModuleCard } from "@/components/ModuleCard";
 import { OfferCard } from "@/components/OfferCard";
 import { ProcessTimeline } from "@/components/ProcessTimeline";
 import { SectionHeader } from "@/components/SectionHeader";
+import { routeBrandAssets } from "@/content/folioframeBrandAssets";
 import {
   addOnModules,
   advancedModules,
@@ -53,13 +55,14 @@ export default function HomePage() {
       <section className="bg-warm-ivory px-5 py-20 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
           <div>
-            <p className="text-sm font-semibold text-slate-blue-grey">
+            <p className="text-sm font-semibold text-graphite">
               Premium buyer-access reliability system
             </p>
-            <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-tight text-deep-navy sm:text-6xl">
-              Checkout-to-customer systems that are mapped, tested and documented.
+            <h1 className="mt-4 max-w-full break-words text-xl font-semibold leading-tight text-ink-navy [overflow-wrap:anywhere] sm:max-w-5xl sm:text-6xl">
+              <span className="block">Checkout-to-customer systems</span>
+              <span className="block">that are mapped, tested and documented.</span>
             </h1>
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-slate-blue-grey">
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-graphite">
               FolioFrame builds the operational layer behind digital product
               delivery: payment, access, onboarding, support, follow-up, migration,
               reporting and verified delivery proof.
@@ -67,20 +70,26 @@ export default function HomePage() {
             <div className="mt-8 flex flex-wrap gap-3">
               <Link
                 href="/apply"
-                className="inline-flex max-w-full rounded-md bg-deep-navy px-5 py-3 text-sm font-semibold text-soft-white hover:bg-slate-blue-grey"
+                className="inline-flex w-full max-w-full justify-center rounded-md bg-ink-navy px-5 py-3 text-sm font-semibold text-soft-white hover:bg-graphite sm:w-auto"
               >
                 Apply for Signature Launch Premium
               </Link>
               <Link
                 href="/foliofix"
-                className="inline-flex max-w-full rounded-md border border-champagne-line bg-soft-white px-5 py-3 text-sm font-semibold text-deep-navy hover:bg-mist-blue"
+                className="inline-flex w-full max-w-full justify-center rounded-md border border-champagne-line bg-soft-white px-5 py-3 text-sm font-semibold text-ink-navy hover:bg-mist sm:w-auto"
               >
                 Book FolioFix Audit
               </Link>
             </div>
           </div>
-          <div className="rounded-lg border border-champagne-line bg-soft-white p-6 shadow-soft">
-            <p className="text-sm font-semibold text-slate-blue-grey">
+          <div className="overflow-hidden rounded-lg border border-champagne-line bg-soft-white p-5 shadow-soft">
+            <BrandAssetImage
+              asset={routeBrandAssets.home.visual}
+              loading="eager"
+              className="rounded-md border border-mist bg-mist p-2"
+              imageClassName="rounded-md"
+            />
+            <p className="mt-5 text-sm font-semibold text-graphite">
               Owner-review system map
             </p>
             <div className="mt-5 grid gap-3">
@@ -92,13 +101,20 @@ export default function HomePage() {
               ].map((item) => (
                 <div
                   key={item}
-                  className="rounded-md border border-mist-blue bg-soft-white p-4 text-sm font-medium text-deep-navy"
+                  className="rounded-md border border-mist bg-soft-white p-4 text-sm font-medium text-ink-navy"
                 >
                   {item}
                 </div>
               ))}
             </div>
-            <p className="mt-5 text-sm leading-6 text-slate-blue-grey">
+            <BrandAssetImage
+              asset={routeBrandAssets.home.motif}
+              decorative
+              loading="eager"
+              className="mt-5 rounded-md border border-mist bg-warm-ivory p-3"
+              imageClassName="mx-auto max-h-32 object-contain"
+            />
+            <p className="mt-5 text-sm leading-6 text-graphite">
               Static preview only. No real auth, billing, platform connections,
               customer data or live monitoring are active.
             </p>
@@ -106,14 +122,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-mist-blue bg-soft-white px-5 py-6 sm:px-6 lg:px-8">
+      <section className="border-y border-mist bg-soft-white px-5 py-6 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-2 sm:grid-cols-3 lg:grid-cols-9">
           {outcomeStrip.map((item, index) => (
             <div
               key={item}
-              className="rounded-md bg-mist-blue px-3 py-3 text-sm font-semibold text-deep-navy"
+              className="rounded-md bg-mist px-3 py-3 text-sm font-semibold text-ink-navy"
             >
-              <span className="mr-2 text-xs text-slate-blue-grey">
+              <span className="mr-2 text-xs text-graphite">
                 {String(index + 1).padStart(2, "0")}
               </span>
               {item}
@@ -142,35 +158,35 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-deep-navy px-5 py-16 text-soft-white sm:px-6 lg:px-8">
+      <section className="bg-ink-navy px-5 py-16 text-soft-white sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[1fr_0.8fr]">
           <div>
-            <p className="text-sm font-semibold text-pastel-blue">
+            <p className="text-sm font-semibold text-folio-blue">
               Signature Launch Premium
             </p>
             <h2 className="mt-3 text-3xl font-semibold leading-tight sm:text-4xl">
               A higher-tier launch system for complex products, tiers and handover.
             </h2>
-            <p className="mt-5 max-w-3xl text-base leading-7 text-mist-blue">
+            <p className="mt-5 max-w-3xl text-base leading-7 text-mist">
               Signature Launch Premium combines FolioFix, DeliveryProof,
               AccessGuard, AccessDesk, RevenueFrame, AccessSafe,
               EntitlementFrame, InboxGuard, AccessHub, ProofMetrics and the
               FolioFrame Verified Delivery Standard.
             </p>
           </div>
-          <div className="rounded-lg border border-pastel-blue bg-soft-white p-6 text-deep-navy">
-            <p className="text-sm font-semibold text-slate-blue-grey">
+          <div className="rounded-lg border border-folio-blue bg-soft-white p-6 text-ink-navy">
+            <p className="text-sm font-semibold text-graphite">
               Premium scope
             </p>
             <p className="mt-3 text-3xl font-semibold">£9,997</p>
-            <p className="mt-3 text-sm leading-6 text-slate-blue-grey">
+            <p className="mt-3 text-sm leading-6 text-graphite">
               For sellers who need entitlement rules, delivery safeguards, recovery
               paths, operational reporting and handover documentation reviewed
               before production implementation.
             </p>
             <Link
-              href="/signature-launch-system"
-              className="mt-5 inline-flex max-w-full rounded-md bg-deep-navy px-4 py-2 text-sm font-semibold text-soft-white hover:bg-slate-blue-grey"
+              href="/signature-launch"
+              className="mt-5 inline-flex max-w-full rounded-md bg-ink-navy px-4 py-2 text-sm font-semibold text-soft-white hover:bg-graphite"
             >
               Review Signature Launch
             </Link>
@@ -193,7 +209,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-mist-blue px-5 py-16 sm:px-6 lg:px-8">
+      <section className="bg-mist px-5 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
             eyebrow="Advanced modules"
@@ -236,7 +252,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="bg-mist-blue px-5 py-16 sm:px-6 lg:px-8">
+      <section className="bg-mist px-5 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[0.8fr_1.2fr]">
           <SectionHeader
             eyebrow="Safe scope boundary"
@@ -252,7 +268,7 @@ export default function HomePage() {
               <li>- No payment, email or automation platform connections</li>
               <li>- No customer data</li>
               <li>- No fake live monitoring</li>
-              <li>- No final logo or generated brand mark</li>
+              <li>- Only approved source-locked brand assets are used</li>
             </ul>
           </div>
         </div>

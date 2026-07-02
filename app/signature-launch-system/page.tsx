@@ -1,9 +1,11 @@
 import Link from "next/link";
+import { BrandAssetImage } from "@/components/BrandAssetImage";
 import { FAQBlock } from "@/components/FAQBlock";
 import { MarketingPage } from "@/components/MarketingPage";
 import { ModuleCard } from "@/components/ModuleCard";
 import { OfferCard } from "@/components/OfferCard";
 import { SectionHeader } from "@/components/SectionHeader";
+import { routeBrandAssets } from "@/content/folioframeBrandAssets";
 import { getOfferBySlug, getOfferModules } from "@/content/folioframeHelpers";
 import {
   addOnModules,
@@ -62,32 +64,50 @@ export default function SignatureLaunchSystemPage() {
 
   return (
     <MarketingPage>
-      <section className="bg-deep-navy px-5 py-20 text-soft-white sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <p className="text-sm font-semibold text-pastel-blue">
-            Signature Launch System
-          </p>
-          <h1 className="mt-4 max-w-5xl text-4xl font-semibold leading-tight sm:text-6xl">
-            A premium checkout-to-customer system for high-stakes digital product launches.
-          </h1>
-          <p className="mt-6 max-w-3xl text-lg leading-8 text-mist-blue">
-            Signature Launch Premium maps, tests and documents payment,
-            entitlement, access, delivery, onboarding, support, follow-up,
-            reporting and verified delivery proof before production implementation.
-          </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="/apply"
-              className="inline-flex max-w-full rounded-md bg-soft-white px-5 py-3 text-sm font-semibold text-deep-navy hover:bg-mist-blue"
-            >
-              Apply for Signature Launch Premium
-            </Link>
-            <Link
-              href="/pricing"
-              className="inline-flex max-w-full rounded-md border border-pastel-blue px-5 py-3 text-sm font-semibold text-soft-white hover:bg-slate-blue-grey"
-            >
-              Compare pricing
-            </Link>
+      <section className="bg-ink-navy px-5 py-20 text-soft-white sm:px-6 lg:px-8">
+        <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div>
+            <p className="text-sm font-semibold text-folio-blue">
+              Signature Launch System
+            </p>
+            <h1 className="mt-4 max-w-full break-words text-xl font-semibold leading-tight [overflow-wrap:anywhere] sm:max-w-5xl sm:text-6xl">
+              <span className="block">A premium checkout-to-customer system</span>
+              <span className="block">for high-stakes digital product launches.</span>
+            </h1>
+            <p className="mt-6 max-w-3xl text-lg leading-8 text-mist">
+              Signature Launch Premium maps, tests and documents payment,
+              entitlement, access, delivery, onboarding, support, follow-up,
+              reporting and verified delivery proof before production implementation.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Link
+                href="/apply"
+                className="inline-flex w-full max-w-full justify-center rounded-md bg-soft-white px-5 py-3 text-sm font-semibold text-ink-navy hover:bg-mist sm:w-auto"
+              >
+                Apply for Signature Launch Premium
+              </Link>
+              <Link
+                href="/pricing"
+                className="inline-flex w-full max-w-full justify-center rounded-md border border-folio-blue px-5 py-3 text-sm font-semibold text-soft-white hover:bg-graphite sm:w-auto"
+              >
+                Compare pricing
+              </Link>
+            </div>
+          </div>
+          <div className="rounded-lg border border-folio-blue/70 bg-soft-white/10 p-4">
+            <BrandAssetImage
+              asset={routeBrandAssets.signatureLaunch.visual}
+              loading="eager"
+              className="rounded-md border border-folio-blue/50 bg-soft-white p-2"
+              imageClassName="rounded-md"
+            />
+            <BrandAssetImage
+              asset={routeBrandAssets.signatureLaunch.motif}
+              decorative
+              loading="eager"
+              className="mt-4 rounded-md border border-folio-blue/40 bg-ink-navy p-3"
+              imageClassName="mx-auto max-h-32 object-contain"
+            />
           </div>
         </div>
       </section>
@@ -130,12 +150,12 @@ export default function SignatureLaunchSystemPage() {
                 <Link
                   key={module.slug}
                   href={module.publicPath}
-                  className="rounded-lg border border-champagne-line bg-soft-white p-5"
+              className="rounded-lg border border-champagne-line bg-soft-white p-5"
                 >
-                  <h3 className="text-base font-semibold text-deep-navy">
+                  <h3 className="text-base font-semibold text-ink-navy">
                     {module.name}
                   </h3>
-                  <p className="mt-2 text-sm leading-6 text-slate-blue-grey">
+                  <p className="mt-2 text-sm leading-6 text-graphite">
                     {module.shortDescription}
                   </p>
                 </Link>
@@ -167,7 +187,7 @@ export default function SignatureLaunchSystemPage() {
         </section>
       ) : null}
 
-      <section className="bg-mist-blue px-5 py-16 sm:px-6 lg:px-8">
+      <section className="bg-mist px-5 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeader
             eyebrow="Timeline"
@@ -177,12 +197,12 @@ export default function SignatureLaunchSystemPage() {
             {timeline.map((item) => (
               <article
                 key={item.title}
-                className="rounded-lg border border-pastel-blue bg-soft-white p-5"
+                className="rounded-lg border border-folio-blue bg-soft-white p-5"
               >
-                <h3 className="text-lg font-semibold text-deep-navy">
+                <h3 className="text-lg font-semibold text-ink-navy">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm leading-6 text-slate-blue-grey">
+                <p className="mt-3 text-sm leading-6 text-graphite">
                   {item.body}
                 </p>
               </article>
@@ -219,35 +239,35 @@ export default function SignatureLaunchSystemPage() {
         </div>
       </section>
 
-      <section className="bg-mist-blue px-5 py-16 sm:px-6 lg:px-8">
+      <section className="bg-mist px-5 py-16 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-5 md:grid-cols-2">
           {launchRoom ? (
-            <article className="rounded-lg border border-pastel-blue bg-soft-white p-6">
-              <h2 className="text-2xl font-semibold text-deep-navy">
+            <article className="rounded-lg border border-folio-blue bg-soft-white p-6">
+              <h2 className="text-2xl font-semibold text-ink-navy">
                 LaunchRoom add-on
               </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-blue-grey">
+              <p className="mt-3 text-sm leading-6 text-graphite">
                 {launchRoom.longDescription}
               </p>
               <Link
                 href="/launchroom"
-                className="mt-5 inline-flex rounded-md bg-deep-navy px-4 py-2 text-sm font-semibold text-soft-white hover:bg-slate-blue-grey"
+                className="mt-5 inline-flex rounded-md bg-ink-navy px-4 py-2 text-sm font-semibold text-soft-white hover:bg-graphite"
               >
                 Review LaunchRoom
               </Link>
             </article>
           ) : null}
           {migrationFrame ? (
-            <article className="rounded-lg border border-pastel-blue bg-soft-white p-6">
-              <h2 className="text-2xl font-semibold text-deep-navy">
+            <article className="rounded-lg border border-folio-blue bg-soft-white p-6">
+              <h2 className="text-2xl font-semibold text-ink-navy">
                 MigrationFrame add-on
               </h2>
-              <p className="mt-3 text-sm leading-6 text-slate-blue-grey">
+              <p className="mt-3 text-sm leading-6 text-graphite">
                 {migrationFrame.longDescription}
               </p>
               <Link
                 href="/migrationframe"
-                className="mt-5 inline-flex rounded-md bg-deep-navy px-4 py-2 text-sm font-semibold text-soft-white hover:bg-slate-blue-grey"
+                className="mt-5 inline-flex rounded-md bg-ink-navy px-4 py-2 text-sm font-semibold text-soft-white hover:bg-graphite"
               >
                 Review MigrationFrame
               </Link>

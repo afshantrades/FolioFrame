@@ -38,7 +38,7 @@ export function StaticDemoNotice({
 }) {
   return (
     <div
-      className={`rounded-lg border border-pastel-blue bg-mist-blue text-deep-navy ${
+      className={`min-w-0 max-w-full overflow-hidden rounded-lg border border-pastel-blue bg-mist-blue text-deep-navy ${
         compact ? "p-3 text-xs leading-5" : "p-4 text-sm leading-6"
       }`}
     >

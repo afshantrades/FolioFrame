@@ -1,5 +1,7 @@
 import Link from "next/link";
+import { BrandAssetImage } from "@/components/BrandAssetImage";
 import { LiveDataStatusBanner } from "@/components/LiveDataStatusBanner";
+import { routeBrandAssets } from "@/content/folioframeBrandAssets";
 import {
   majorWorkspaceLinks,
   moduleStatusOverview,
@@ -61,6 +63,28 @@ function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) 
 
       <LiveDataStatusBanner snapshot={snapshot} />
 
+      <PortalSection
+        eyebrow="Approved brand surface"
+        title="Workspace review materials"
+        body="The portal overview uses approved source-locked FolioFrame assets. Production integrations remain disconnected until a later implementation scope."
+      >
+        <div className="grid gap-4 lg:grid-cols-[1.25fr_0.75fr]">
+          <BrandAssetImage
+            asset={routeBrandAssets.portal.visual}
+            loading="eager"
+            className="rounded-lg border border-mist bg-soft-white p-3 shadow-soft"
+            imageClassName="rounded-md"
+          />
+          <BrandAssetImage
+            asset={routeBrandAssets.portal.motif}
+            decorative
+            loading="eager"
+            className="rounded-lg border border-mist bg-warm-ivory p-3 shadow-soft"
+            imageClassName="mx-auto max-h-44 object-contain"
+          />
+        </div>
+      </PortalSection>
+
       {needsAuthSetup ? (
         <PortalSection
           eyebrow="Workspace access"
@@ -75,7 +99,7 @@ function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) 
           {snapshot.source === "auth-required" ? (
             <Link
               href="/sign-in"
-              className="inline-flex rounded-md border border-deep-navy px-4 py-2 text-sm font-semibold text-deep-navy hover:bg-deep-navy hover:text-soft-white"
+              className="inline-flex rounded-md border border-ink-navy px-4 py-2 text-sm font-semibold text-ink-navy hover:bg-ink-navy hover:text-soft-white"
             >
               Open sign-in
             </Link>
@@ -88,7 +112,7 @@ function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) 
               </p>
               <Link
                 href="/app/workspace-setup"
-                className="inline-flex rounded-md border border-deep-navy px-4 py-2 text-sm font-semibold text-deep-navy hover:bg-deep-navy hover:text-soft-white"
+                className="inline-flex rounded-md border border-ink-navy px-4 py-2 text-sm font-semibold text-ink-navy hover:bg-ink-navy hover:text-soft-white"
               >
                 Open workspace setup
               </Link>
@@ -183,20 +207,20 @@ function OverviewDashboard({ snapshot }: { snapshot: PortalWorkspaceSnapshot }) 
         >
           <div className="grid gap-3 md:grid-cols-2">
             {moduleStatusOverview.map((item) => (
-              <Link
-                key={item.module}
-                href={item.workspace}
-                className="rounded-lg border border-mist-blue bg-soft-white p-4 hover:border-pastel-blue hover:bg-mist-blue"
-              >
-                <div className="flex flex-wrap items-start justify-between gap-3">
-                  <h3 className="text-base font-semibold text-deep-navy">
+            <Link
+              key={item.module}
+              href={item.workspace}
+              className="rounded-lg border border-mist bg-soft-white p-4 hover:border-folio-blue hover:bg-mist"
+            >
+              <div className="flex flex-wrap items-start justify-between gap-3">
+                  <h3 className="text-base font-semibold text-ink-navy">
                     {item.module}
                   </h3>
                   <PortalStatusBadge tone={statusTone(item.status)}>
                     {item.status}
                   </PortalStatusBadge>
                 </div>
-                <p className="mt-3 text-sm leading-6 text-slate-blue-grey">
+                <p className="mt-3 text-sm leading-6 text-graphite">
                   {item.note}
                 </p>
               </Link>
