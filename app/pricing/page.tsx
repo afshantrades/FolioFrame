@@ -1,9 +1,19 @@
+import type { Metadata } from "next";
 import { BrandAssetImage } from "@/components/BrandAssetImage";
 import { MarketingPage } from "@/components/MarketingPage";
 import { OfferCard } from "@/components/OfferCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { routeBrandAssets } from "@/content/folioframeBrandAssets";
 import { folioframeOffers } from "@/content/folioframeOffers";
+
+export const metadata: Metadata = {
+  title: "Pricing",
+  description:
+    "Review FolioFrame pricing for FolioFix Audit, Signature Launch Premium, LaunchRoom, MigrationFrame, AgencyFrame and AccessGuard retainers.",
+  alternates: {
+    canonical: "/pricing",
+  },
+};
 
 export default function PricingPage() {
   const recommendedOffer = folioframeOffers.find(

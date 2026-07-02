@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { BrandAssetImage } from "@/components/BrandAssetImage";
 import { FAQBlock } from "@/components/FAQBlock";
@@ -39,6 +40,15 @@ const previewOfferNames = [
   "Signature Launch Premium",
   "AccessGuard + ProofMetrics retainer",
 ];
+
+export const metadata: Metadata = {
+  title: "Checkout-to-customer delivery systems",
+  description:
+    "FolioFrame maps, tests and documents the operational layer behind digital product delivery, access, support, reporting and verified delivery proof.",
+  alternates: {
+    canonical: "/",
+  },
+};
 
 export default function HomePage() {
   const advancedAndSpecialist = [

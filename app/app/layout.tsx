@@ -1,5 +1,19 @@
+import type { Metadata } from "next";
 import { PortalShell } from "@/components/PortalShell";
 import { getAuthStatusSummary } from "@/lib/auth/config";
+
+export const metadata: Metadata = {
+  title: "Static portal demo",
+  description:
+    "A static FolioFrame portal/demo surface for reviewing buyer-access reliability workspaces. No live billing, customer data, support ticketing or production integrations are active.",
+  alternates: {
+    canonical: "/app",
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default function InternalAppLayout({
   children,
