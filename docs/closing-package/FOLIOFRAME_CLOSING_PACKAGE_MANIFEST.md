@@ -11,6 +11,20 @@
 - Build verification result: `npm run prisma:generate`, `npm run lint`, `npm run typecheck` and `npm run build` passed
 - Static build reference: `63/63` pages generated in the latest verified build
 
+This manifest now tracks the primary Premium v3 buyer-facing closing package and the supporting source-controlled reproducible appendix.
+
+## Primary Buyer-Facing Closing Package
+
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3.pdf`
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3.zip`
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3_Contact_Sheet.png`
+
+Positioning:
+
+- Primary closing package for buyer-facing review.
+- Static service website and static portal/demo surface disclosure remains required.
+- Does not claim live SaaS operation, live billing, production auth, real customer data, live monitoring or automated fulfilment.
+
 ## Included Source Documents
 
 - `docs/closing-package/FOLIOFRAME_CLOSING_PACKAGE_SOURCE.md`
@@ -26,7 +40,9 @@
 - `docs/closing-package/FOLIOFRAME_CLOSING_PACKAGE_MANIFEST.md`
 - `docs/closing-package/render_closing_package_pdf.py`
 
-## Exported Files
+## Supporting Source-Controlled Appendix
+
+The deterministic source-controlled package remains available as the supporting reproducible appendix:
 
 - `docs/closing-package/FolioFrame_Closing_Package_v1.pdf`
 - `FolioFrame_Closing_Package_Source_Controlled_v1.zip`

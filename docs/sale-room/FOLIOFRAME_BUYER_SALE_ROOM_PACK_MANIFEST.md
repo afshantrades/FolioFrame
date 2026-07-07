@@ -33,6 +33,20 @@ The package is for external review of FolioFrame as a buyer-ready static service
 
 - `docs/sale-room/FolioFrame_Buyer_Sale_Room_Pack_v1.pdf`
 
+## Primary Closing Package
+
+The repository includes the polished buyer-facing Premium v3 closing package:
+
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3.pdf`
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3.zip`
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3_Contact_Sheet.png`
+
+Positioning:
+
+- Primary closing package for buyer-facing review.
+- Preserves the static/demo disclosure.
+- Does not claim live SaaS operation, live billing, production auth, real customer data, live monitoring or automated fulfilment.
+
 ## Related Source-Controlled Closing Package
 
 The repository also includes a deterministic closing appendix:
@@ -43,8 +57,8 @@ The repository also includes a deterministic closing appendix:
 
 Positioning:
 
-- Source-controlled closing package and reproducible handover documentation.
-- Does not replace `FolioFrame_Complete_Closing_Package_Premium_v3.pdf`.
+- Supporting reproducible appendix and handover documentation.
+- Does not replace the Premium v3 buyer-facing closing package.
 - Preserves the static/demo disclosure and does not claim live SaaS operation.
 
 ## Excluded From This Pack

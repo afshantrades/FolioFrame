@@ -35,17 +35,23 @@ Relevant existing docs:
 - `docs/live/`
 - `docs/closing-package/`
 
-## Source-Controlled Closing Package
+## Closing Packages
 
-The deterministic closing package is included as source-controlled closing package and reproducible handover documentation.
+Primary closing package:
 
-Primary files:
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3.pdf`
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3.zip`
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3_Contact_Sheet.png`
+
+This is the polished buyer-facing Premium v3 closing package for external review.
+
+Supporting reproducible appendix:
 
 - `docs/closing-package/FOLIOFRAME_CLOSING_PACKAGE_SOURCE.md`
 - `docs/closing-package/FolioFrame_Closing_Package_v1.pdf`
 - `FolioFrame_Closing_Package_Source_Controlled_v1.zip`
 
-This source-controlled appendix does not replace `FolioFrame_Complete_Closing_Package_Premium_v3.pdf`. If that premium PDF is used in a transaction, treat it as a separate buyer-facing presentation artifact and keep this package as the reproducible diligence appendix.
+The source-controlled appendix is reproducible handover documentation. It supports diligence and auditability; it does not replace the Premium v3 buyer-facing package.
 
 ## Primary Demo Routes
 

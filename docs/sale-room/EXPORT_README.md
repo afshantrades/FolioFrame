@@ -24,6 +24,7 @@ The pack includes:
 - Buyer review order
 - Red-flag disclosure summary
 - Export manifest
+- Primary Premium v3 closing package
 - Source-controlled closing package and reproducible handover documentation
 
 ## Current Product Status
@@ -68,12 +69,21 @@ Use this sale-room pack to evaluate FolioFrame as:
 - A static portal/demo surface for buyer presentations.
 - A structured implementation methodology.
 - A foundation for future service-led SaaS buildout.
-- A source-controlled closing package and reproducible handover documentation set.
+- A primary Premium v3 closing package with a source-controlled reproducible appendix.
 
 Before operating FolioFrame as live software, complete production auth, backend, secure credentials, integrations, privacy/legal review, support workflows and security review.
 
 ## Closing Package Note
 
-The deterministic closing package lives in `docs/closing-package/` and is exported as `FolioFrame_Closing_Package_Source_Controlled_v1.zip`.
+Primary closing package:
 
-It does not replace `FolioFrame_Complete_Closing_Package_Premium_v3.pdf`. Treat the source-controlled package as the reproducible diligence appendix and the premium PDF, if provided, as a separate presentation artifact.
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3.pdf`
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3.zip`
+- `docs/closing-package/final/FolioFrame_Complete_Closing_Package_Premium_v3_Contact_Sheet.png`
+
+Supporting reproducible appendix:
+
+- `docs/closing-package/`
+- `FolioFrame_Closing_Package_Source_Controlled_v1.zip`
+
+The source-controlled package supports reproducible diligence and handover review. It does not replace the Premium v3 buyer-facing package.
